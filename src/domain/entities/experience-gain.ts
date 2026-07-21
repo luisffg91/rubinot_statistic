@@ -1,10 +1,8 @@
-export type GainPeriod = 'day' | 'week' | 'month';
-
-/** Ganho de experiência de um personagem em um período. */
+/** Ganho de experiência de um personagem em um intervalo de datas. */
 export interface ExperienceGain {
   name: string;
   world: string;
-  gained: number; // XP ganho no período (≥ 0)
+  gained: number; // XP ganho no intervalo (≥ 0)
   spark: number[]; // pontos da evolução recente (para a sparkline)
 }
 
