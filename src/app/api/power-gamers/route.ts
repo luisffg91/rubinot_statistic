@@ -17,8 +17,9 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const period = parsePeriod(url.searchParams.get('period'));
   const world = url.searchParams.get('world') || undefined;
+  const day = url.searchParams.get('date') || undefined;
   try {
-    const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period, world);
+    const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period, world, day);
     return NextResponse.json(toPowerGamersDto(pg));
   } catch {
     return NextResponse.json({ error: 'unavailable' }, { status: 503 });

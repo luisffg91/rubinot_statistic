@@ -616,6 +616,51 @@ a {
   display: block;
 }
 
+/* Coluna numérica (alinhada à direita, dígitos tabulares) */
+.ranking-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ranking-table .gain-cell {
+  color: var(--color-online);
+  font-weight: 600;
+}
+
+.ranking-table .spark-col {
+  width: 140px;
+}
+
+/* Seletor de dia (Power Gamers) */
+.day-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.day-form input[type='date'] {
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.day-form button {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-weight: 600;
+  cursor: pointer;
+}
+
 /* --- Bosses boostados --- */
 .boosted-card__name {
   font-family: var(--font-display);

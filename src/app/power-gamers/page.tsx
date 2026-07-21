@@ -20,14 +20,19 @@ function parsePeriod(value?: string): GainPeriod {
   return value === 'week' || value === 'month' ? value : 'day';
 }
 
+function formatDay(iso: string): string {
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+
 export default async function PowerGamersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ period?: string }>;
+  searchParams: Promise<{ period?: string; date?: string }>;
 }) {
-  const { period: raw } = await searchParams;
-  const period = parsePeriod(raw);
-  const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period);
+  const sp = await searchParams;
+  const period = parsePeriod(sp.period);
+  const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period, undefined, sp.date);
   const data = toPowerGamersDto(pg);
 
   return (
@@ -35,7 +40,9 @@ export default async function PowerGamersPage({
       <header className="hero">
         <h1>Power Gamers</h1>
         <p>
-          Quem mais ganhou experiência no período.
+          {period === 'day' && data.day
+            ? `Experiência ganha no dia ${formatDay(data.day)}.`
+            : 'Quem mais ganhou experiência no período.'}
           {data.origin === 'exemplo' && (
             <>
               {' '}
@@ -56,6 +63,15 @@ export default async function PowerGamersPage({
           </Link>
         ))}
       </nav>
+
+      {period === 'day' && (
+        <form className="day-form" method="get" role="search">
+          <input type="hidden" name="period" value="day" />
+          <label htmlFor="pg-date">Escolha o dia</label>
+          <input id="pg-date" type="date" name="date" defaultValue={data.day ?? undefined} />
+          <button type="submit">Ver</button>
+        </form>
+      )}
 
       <div className="data-block table-scroll">
         {data.collecting ? (
