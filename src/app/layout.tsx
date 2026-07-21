@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <nav className="site-nav" aria-label="Navegação principal">
               <Link href="/">Início</Link>
               <Link href="/ranking">Ranking</Link>
+              <Link href="/power-gamers">Power Gamers</Link>
               <Link href="/contato">Contato</Link>
             </nav>
           </div>
