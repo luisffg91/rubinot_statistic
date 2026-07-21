@@ -141,9 +141,9 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 ## Phase 8: Polish & Cross-Cutting
 
-- [ ] T055 [P] Atualizar `README.md` e `CLAUDE.md` com as páginas da Evolução 1 e o **modo demonstração** (Princípio VII)
-- [ ] T056 Passada de responsividade (desktop/mobile) nas novas páginas + selo "exemplo" consistente
-- [ ] T057 Rodar suíte completa (`test:unit` + `test:e2e` + build + lint) e validar o quickstart (SC-001..SC-008)
+- [X] T055 [P] Atualizar `README.md` e `CLAUDE.md` com as páginas da Evolução 1 e o **modo demonstração** (Princípio VII)
+- [X] T056 Passada de responsividade (desktop/mobile) nas novas páginas + selo "exemplo" consistente
+- [X] T057 Rodar suíte completa (`test:unit` + `test:e2e` + build + lint) e validar o quickstart (SC-001..SC-008)
 
 ---
 

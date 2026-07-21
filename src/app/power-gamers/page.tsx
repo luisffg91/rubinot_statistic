@@ -57,7 +57,7 @@ export default async function PowerGamersPage({
         ))}
       </nav>
 
-      <div className="data-block">
+      <div className="data-block table-scroll">
         {data.collecting ? (
           <p className="data-block__unavailable" data-testid="collecting">
             Coletando dados para este período… volte em breve.

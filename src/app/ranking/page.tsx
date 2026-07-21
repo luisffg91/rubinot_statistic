@@ -48,7 +48,7 @@ export default async function RankingPage({
         ))}
       </nav>
 
-      <div className="data-block">
+      <div className="data-block table-scroll">
         <RankingTable entries={data.entries} />
       </div>
     </main>
