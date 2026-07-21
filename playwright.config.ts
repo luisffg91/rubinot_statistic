@@ -12,6 +12,11 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    env: { RUBINOT_WORLDS_URL: 'http://127.0.0.1:9/api/worlds' },
+    env: {
+      RUBINOT_WORLDS_URL: 'http://127.0.0.1:9/api/worlds',
+      // TibiaData inalcançável nos testes → boosted usa o fallback mock (determinístico).
+      TIBIADATA_URL_BOSSES: 'http://127.0.0.1:9/boostablebosses',
+      TIBIADATA_URL_CREATURES: 'http://127.0.0.1:9/creatures',
+    },
   },
 });

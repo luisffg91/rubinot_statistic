@@ -662,6 +662,28 @@ a {
 }
 
 /* --- Bosses boostados --- */
+.boosted-card__label {
+  margin: 0 0 var(--space-2);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.boosted-card__body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.boosted-card__img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex: none;
+}
+
 .boosted-card__name {
   font-family: var(--font-display);
   font-size: 1.4rem;
