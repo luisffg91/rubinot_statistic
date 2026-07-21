@@ -37,7 +37,11 @@ atenção e pelo trabalho de vocês no servidor!
 
 Abraço,
 [Seu nome] — Rubinot Statistics
-[e-mail de contato] · https://rubinot-statistic.vercel.app/
+rubinotstatistics@gmail.com · (seu telefone) · https://rubinot-statistic.vercel.app/
+
+<!-- Versão pronta para envio, com nome e telefone reais, em docs/outreach/rubinot-proposal.local.md
+     (arquivo NÃO versionado — o repositório é público). -->
+
 
 ---
 
