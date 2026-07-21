@@ -52,6 +52,53 @@ a {
   text-decoration: none;
 }
 
+.site-header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* --- Server Save (contagem regressiva) --- */
+.server-save {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+  color: var(--color-text-muted);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.server-save__icon {
+  color: var(--color-accent);
+  flex: none;
+}
+
+.server-save__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.server-save__value {
+  font-family: var(--font-display), monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* Em telas estreitas, esconde o rótulo e mantém só o ícone + relógio. */
+@media (max-width: 560px) {
+  .server-save__label {
+    display: none;
+  }
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;

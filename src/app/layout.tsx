@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { Cinzel, Inter } from 'next/font/google';
 import Link from 'next/link';
 import { Logo } from './components/logo';
+import { ServerSaveCountdown } from './components/server-save-countdown';
 import './globals.css';
 
 // Fontes auto-hospedadas pelo Next (sem request externo em runtime — seguro p/ CSP e performance).
@@ -25,9 +26,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <header className="site-header">
           <div className="site-header__inner">
-            <Link href="/" className="site-header__brand" aria-label="Rubinot Statistics — início">
-              <Logo />
-            </Link>
+            <div className="site-header__left">
+              <Link href="/" className="site-header__brand" aria-label="Rubinot Statistics — início">
+                <Logo />
+              </Link>
+              <ServerSaveCountdown />
+            </div>
             <nav className="site-nav" aria-label="Navegação principal">
               <Link href="/">Início</Link>
               <Link href="/ranking">Ranking</Link>
