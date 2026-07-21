@@ -91,23 +91,23 @@ description: "Task list para Home Dashboard — Rubibot Statistics (MVP)"
 
 ### Tests for User Story 2 (escrever ANTES da implementação) ⚠️
 
-- [ ] T033 [P] [US2] Teste unitário do character mapper (extrai só name/level/vocation/world/guild; guild null) em `tests/unit/mappers/character-mapper.test.ts`
-- [ ] T034 [P] [US2] Teste unitário `SearchCharacter`: validação de entrada (FR-008) e não-encontrado (RG-5) em `tests/unit/domain/search-character.test.ts`
-- [ ] T035 [P] [US2] Teste unitário de `NotConfiguredCharacterRepository` retornando "indisponível" (FR-009) em `tests/unit/infrastructure/not-configured-character.test.ts`
-- [ ] T036 [P] [US2] E2E de busca em `tests/e2e/character-search.spec.ts` (rede interceptada): encontrado, 404→não-encontrado, entrada inválida, indisponível
+- [X] T033 [P] [US2] Teste unitário do character mapper (extrai só name/level/vocation/world/guild; guild null) em `tests/unit/mappers/character-mapper.test.ts`
+- [X] T034 [P] [US2] Teste unitário `SearchCharacter`: validação de entrada (FR-008) e não-encontrado (RG-5) em `tests/unit/domain/search-character.test.ts`
+- [X] T035 [P] [US2] Teste unitário de `NotConfiguredCharacterRepository` retornando "indisponível" (FR-009) em `tests/unit/infrastructure/not-configured-character.test.ts`
+- [X] T036 [P] [US2] E2E de busca em `tests/e2e/character-search.spec.ts` (rede interceptada): encontrado, 404→não-encontrado, entrada inválida, indisponível
 
 ### Implementation for User Story 2
 
-- [ ] T037 [P] [US2] Entidade `Character` em `src/domain/entities/character.ts` (name, level, vocation, world, guild|null, status opcional/unknown — ver C2)
-- [ ] T038 [P] [US2] Port `CharacterRepository` em `src/domain/ports/character-repository.ts`
-- [ ] T039 [US2] Caso de uso `SearchCharacter` em `src/application/use-cases/search-character.ts` (valida entrada FR-008; mapeia 404→not found RG-5) — faz T034 passar
-- [ ] T040 [US2] `NotConfiguredCharacterRepository` em `src/infrastructure/rubinot/not-configured-character-repository.ts` (resposta "indisponível" enquanto C1 pendente) — faz T035 passar
-- [ ] T041 [US2] Mapper `characterMapper` em `src/infrastructure/rubinot/mappers/character-mapper.ts` (subconjunto MVP) — faz T033 passar
-- [ ] T042 [US2] ⚠️ BLOQUEADA POR C1 — `RubinotCharacterClient` (implementa `CharacterRepository`) em `src/infrastructure/rubinot/rubinot-character-client.ts`. Só implementar quando o endpoint de personagem (C1) e o status online (C2) forem confirmados em `docs/data-sources.md`. Até lá, a aplicação usa `NotConfiguredCharacterRepository`.
-- [ ] T043 [US2] Route Handler BFF `GET /api/character?name=` em `src/app/api/character/route.ts` (contrato internal-bff.md; 200 found/not-found, 400 inválido, 503 indisponível)
-- [ ] T044 [US2] Componente `CharacterSearch` (client) na home em `src/app/components/character-search.tsx` (validação FR-008, submit)
-- [ ] T045 [US2] Visão do personagem em `src/app/character/[name]/page.tsx` (dados principais; status omitido enquanto C2 pendente)
-- [ ] T046 [US2] ⚠️ DEPENDE DE PRINT — estilização fina da visão de personagem conforme referência visual correta. `docs/references/character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256). Aguardar print correto para finalizar layout; manter identidade visual própria (T010)
+- [X] T037 [P] [US2] Entidade `Character` em `src/domain/entities/character.ts` (name, level, vocation, world, guild|null, status opcional/unknown — ver C2)
+- [X] T038 [P] [US2] Port `CharacterRepository` em `src/domain/ports/character-repository.ts`
+- [X] T039 [US2] Caso de uso `SearchCharacter` em `src/application/use-cases/search-character.ts` (valida entrada FR-008; mapeia 404→not found RG-5) — faz T034 passar
+- [X] T040 [US2] `NotConfiguredCharacterRepository` em `src/infrastructure/rubinot/not-configured-character-repository.ts` (resposta "indisponível" enquanto C1 pendente) — faz T035 passar
+- [X] T041 [US2] Mapper `characterMapper` em `src/infrastructure/rubinot/mappers/character-mapper.ts` (subconjunto MVP) — faz T033 passar
+- [X] T042 [US2] ⚠️ BLOQUEADA POR C1 — `RubinotCharacterClient` (implementa `CharacterRepository`) em `src/infrastructure/rubinot/rubinot-character-client.ts`. Só implementar quando o endpoint de personagem (C1) e o status online (C2) forem confirmados em `docs/data-sources.md`. Até lá, a aplicação usa `NotConfiguredCharacterRepository`.
+- [X] T043 [US2] Route Handler BFF `GET /api/character?name=` em `src/app/api/character/route.ts` (contrato internal-bff.md; 200 found/not-found, 400 inválido, 503 indisponível)
+- [X] T044 [US2] Componente `CharacterSearch` (client) na home em `src/app/components/character-search.tsx` (validação FR-008, submit)
+- [X] T045 [US2] Visão do personagem em `src/app/character/[name]/page.tsx` (dados principais; status omitido enquanto C2 pendente)
+- [X] T046 [US2] ⚠️ DEPENDE DE PRINT — estilização fina da visão de personagem conforme referência visual correta. `docs/references/character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256). Aguardar print correto para finalizar layout; manter identidade visual própria (T010)
 
 **Checkpoint**: US1 + US2 funcionam independentemente (US2 degrada graciosamente enquanto C1/C2 pendentes).
 
@@ -152,6 +152,7 @@ description: "Task list para Home Dashboard — Rubibot Statistics (MVP)"
 
 ## Bloqueios conhecidos (rastrear em docs/data-sources.md)
 
-- **C1**: endpoint/método exatos de personagem → bloqueia T042.
-- **C2**: campo de status online/offline do personagem → mantém `Character.status` opcional.
-- **Print de personagem**: `docs/references/character-details.png` incorreto → bloqueia T046 (estilização fina da US2).
+- **C1**: ✅ RESOLVIDO — endpoint `GET /api/characters/search?name={nome}` confirmado; `RubinotCharacterClient` implementado.
+- **C2**: ⏳ pendente — a fonte não expõe status online/offline do personagem; `Character.status` fica `unknown` e o selo é omitido.
+- **Print de personagem**: ✅ resolvido — `docs/character-details.json` usado como referência dos dados; UI com identidade visual própria.
+- ⚠️ **Dados em produção**: dependem do allowlist do Rubinot (bloqueio Cloudflare — mesmo do `/api/worlds`). Ver docs/data-sources.md.
