@@ -44,7 +44,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* Em telas estreitas o menu desce para a própria linha (sem colidir com o Server Save). */
+@media (max-width: 720px) {
+  .site-nav {
+    width: 100%;
+    order: 3;
+  }
 }
 
 .site-header__brand {
@@ -314,6 +323,38 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-3);
+}
+
+/* Vitais: cada card cresce só até o seu conteúdo (sem espaço vazio no card de online). */
+.vitals-grid {
+  align-items: start;
+}
+
+.vitals-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.vitals-stats dt {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vitals-stats dd {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.vitals-stats__num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
 }
 
 /* --- DataBlock --- */

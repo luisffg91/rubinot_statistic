@@ -1,17 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { ServerSnapshotDto } from '@/app/_lib/snapshot-dto';
+import type { ServerSnapshotDto, WorldDto } from '@/app/_lib/snapshot-dto';
 import { REFRESH_INTERVAL_MS } from '@/domain/services/staleness';
 import { DataBlock } from './data-block';
 import { OnlineCounter } from './online-counter';
 import { WorldsList } from './worlds-list';
 import { DemoBadge } from './demo-badge';
 
+const nf = new Intl.NumberFormat('pt-BR');
+
 function updatedLabel(fetchedAt: string | null): string {
   if (!fetchedAt) return 'sem atualização';
   const secs = Math.max(0, Math.round((Date.now() - new Date(fetchedAt).getTime()) / 1000));
   return `atualizado há ${secs}s`;
+}
+
+/** Estatísticas de apoio derivadas dos mundos, para dar corpo ao card de online. */
+function onlineStats(worlds: WorldDto[], total: number) {
+  const onlineCount = worlds.filter((w) => w.status === 'online').length;
+  const busiest = worlds.reduce<WorldDto | null>(
+    (best, w) => (!best || w.playersOnline > best.playersOnline ? w : best),
+    null,
+  );
+  const average = worlds.length ? Math.round(total / worlds.length) : 0;
+  return { onlineCount, busiest, average };
 }
 
 /**
@@ -22,8 +35,12 @@ export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null })
   const [snapshot, setSnapshot] = useState<ServerSnapshotDto | null>(initial);
   const [stale, setStale] = useState(false);
   const [unavailable, setUnavailable] = useState(initial === null);
+  // O rótulo "há Xs" depende de Date.now(), que difere entre SSR e cliente. Só o exibimos
+  // após montar, evitando divergência de hidratação (mostra "agora" no primeiro paint).
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     let active = true;
 
     async function poll() {
@@ -54,23 +71,47 @@ export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null })
     };
   }, []);
 
+  const stats = snapshot ? onlineStats(snapshot.worlds, snapshot.totalOnline) : null;
+  const updated = mounted ? updatedLabel(snapshot?.fetchedAt ?? null) : 'atualizado agora';
+
   return (
-    <div className="grid">
+    <div className="grid vitals-grid">
       <DataBlock
         title="Jogadores online"
-        source={snapshot?.source}
-        updatedLabel={updatedLabel(snapshot?.fetchedAt ?? null)}
+        updatedLabel={updated}
         stale={stale}
         unavailable={unavailable}
       >
         <OnlineCounter total={snapshot?.totalOnline ?? null} />
         {snapshot?.origin === 'exemplo' && <DemoBadge />}
+        {stats && (
+          <dl className="vitals-stats">
+            <div>
+              <dt>Mundos online</dt>
+              <dd>{stats.onlineCount}</dd>
+            </div>
+            {stats.busiest && (
+              <div>
+                <dt>Mais movimentado</dt>
+                <dd>
+                  {stats.busiest.name}{' '}
+                  <span className="vitals-stats__num">
+                    {nf.format(stats.busiest.playersOnline)}
+                  </span>
+                </dd>
+              </div>
+            )}
+            <div>
+              <dt>Média por mundo</dt>
+              <dd>{nf.format(stats.average)}</dd>
+            </div>
+          </dl>
+        )}
       </DataBlock>
 
       <DataBlock
         title="Mundos"
-        source={snapshot?.source}
-        updatedLabel={updatedLabel(snapshot?.fetchedAt ?? null)}
+        updatedLabel={updated}
         stale={stale}
         unavailable={unavailable}
       >

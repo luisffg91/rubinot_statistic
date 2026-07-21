@@ -74,6 +74,13 @@ export default async function HomePage() {
         <CharacterSearch />
       </header>
 
+      {news.length > 0 && (
+        <section>
+          <h2 className="section-title">News</h2>
+          <NewsList items={news} />
+        </section>
+      )}
+
       <ServerVitals initial={snapshot} />
 
       {boosted && (
@@ -96,13 +103,6 @@ export default async function HomePage() {
               <StreamerCard key={s.channel} streamer={s} />
             ))}
           </div>
-        </section>
-      )}
-
-      {news.length > 0 && (
-        <section>
-          <h2 className="section-title">News</h2>
-          <NewsList items={news} />
         </section>
       )}
 
