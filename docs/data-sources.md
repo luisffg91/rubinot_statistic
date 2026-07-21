@@ -66,6 +66,7 @@ Ao descobrir uma fonte, preencha: **URL exata**, **método**, **parâmetros**, *
 - *2026-07-21 — US1 implementada e validada (unit + E2E). D5 (personagem) segue 🟡: URL previsível e 404 estável confirmados (Q3), mas falta o path exato (C1) e o campo de status online (C2). D3 (guilds) e D4 (News) movidos para a Evolução 1.*
 - *2026-07-21 — ⚠️ **BLOQUEIO Cloudflare**: `GET /api/worlds` responde **HTTP 403 "Just a moment..."** a fetch server-side (funciona só no browser, que resolve o desafio JS). A produção no Vercel mostra "indisponível". **Decisão**: buscar **acesso oficial/allowlist** com a staff do Rubinot. O app passou a enviar um User-Agent identificável para servir de alvo de allowlist.*
 - *2026-07-21 — Iniciada a **Evolução 1** (spec `specs/003-evolution-1`): Top Experiência (E1), Power Gamers, Bosses boostados (E2), Guilds (D3) e News (D4). **Power Gamers exige histórico** (snapshots do ranking ao longo do tempo) → introduz persistência + coletor agendado; decisão de arquitetura para o `/speckit-plan`. Endpoints E1/E2/D3/D4 ainda a confirmar (mesmo bloqueio Cloudflare; o allowlist os cobre).*
+- *2026-07-21 — Adicionada à Evolução 1 a capacidade **Streamers & Criadores patrocinados**: **S1** lista curada de patrocinados (Twitch + YouTube; config, não é API do Rubinot), **S2** Twitch Helix API (status ao vivo; credenciais próprias, fora do Cloudflare), **S3** YouTube Data API (opcional). Sem DB. Demo usa streamers/canais fictícios rotulados; integração real = Onda 2 (env).*
 
 ## ⚠️ Ação necessária — allowlist do Rubinot (D1/D2)
 

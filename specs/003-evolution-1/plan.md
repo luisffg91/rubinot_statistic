@@ -36,6 +36,7 @@ atrás dos **mesmos ports**, e o Power Gamers real ganha um datastore + coletor 
 
 - **E1** ranking de exp, **E2** bosses, **D3** guilds, **D4** news → **NEEDS CLARIFICATION** (endpoints/formatos desconhecidos; mesmo bloqueio Cloudflare; allowlist cobre). Contratos internos do BFF definidos agora; contratos externos marcados como pendentes.
 - **Power Gamers**: derivado de E1 + histórico (não é endpoint novo).
+- **Streamers/Criadores** (S1/S2/S3): lista curada de patrocinados (config, não é API do Rubinot) + **Twitch Helix** (status ao vivo, credenciais próprias) + **YouTube Data API** opcional. **Fora** do bloqueio Cloudflare; **sem DB** (chamadas de API + lista curada). Onda 2 gated por env; demo usa mocks fictícios.
 
 ## Constitution Check
 
@@ -74,17 +75,19 @@ src/
 ├── domain/
 │   ├── entities/      # RankingEntry, ExperienceGain, BoostedOfDay, Guild, NewsItem, DataOrigin
 │   ├── services/      # computeExperienceGain (delta), sortRanking, buildDemoLabel
-│   └── ports/         # RankingRepository, PowerGamersRepository, BossRepository, GuildsRepository, NewsRepository
-├── application/use-cases/   # GetTopExperience, GetPowerGamers, GetBoostedOfDay, GetGuilds, GetNews
+│   └── ports/         # RankingRepository, PowerGamersRepository, BossRepository, GuildsRepository, NewsRepository, SponsoredStreamersRepository
+├── application/use-cases/   # GetTopExperience, GetPowerGamers, GetBoostedOfDay, GetGuilds, GetNews, GetSponsoredStreamers
 ├── infrastructure/
 │   ├── mock/          # adapters MOCK (dados de exemplo rotulados) — onda 1
 │   ├── rubinot/       # clients reais (onda 2, gated) + mappers
 │   └── config/        # seleção mock vs real por env
 └── app/
     ├── ranking/       # Top Experiência + Power Gamers (seletor de período)
-    ├── bosses/ guilds/ news/     # páginas
-    ├── api/           # BFF: /api/ranking, /api/power-gamers, /api/bosses, /api/guilds, /api/news
-    └── components/    # Sparkline, RankingTable, StatTile, PeriodSelector, DemoBadge
+    ├── bosses/ guilds/ news/ streamers/     # páginas
+    ├── api/           # BFF: /api/ranking, /api/power-gamers, /api/bosses, /api/guilds, /api/news, /api/streamers
+    └── components/    # Sparkline, RankingTable, StatTile, PeriodSelector, DemoBadge, StreamerCard
+
+infrastructure/streamers/   # (Onda 2) TwitchHelixClient + lista curada; YouTube opcional
 ```
 
 **Structure Decision**: reaproveita o padrão do MVP. A novidade é a pasta `infrastructure/mock/` com adapters
