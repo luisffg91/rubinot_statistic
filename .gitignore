@@ -1,0 +1,22 @@
+# Claude Code / agent artifacts privados
+# settings.local.json guarda permissões e possíveis tokens da máquina local — não versionar.
+# skills/ e settings.json (compartilhados) permanecem versionados.
+.claude/settings.local.json
+.claude/*.local.json
+.claude/.credentials.json
+
+# OS
+.DS_Store
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+.env*

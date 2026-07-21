@@ -1,0 +1,28 @@
+/*
+ * Identidade visual PRÓPRIA do Rubibot Statistics.
+ * Inspirada (NÃO copiada) na linguagem do Rubinot: âmbar/ouro medieval sobre azul-noite,
+ * com um verde-esmeralda como cor de diferenciação. Familiar, mas distinto.
+ */
+:root {
+  --color-bg: #0f1626; /* azul-noite profundo */
+  --color-surface: #16203a; /* superfície de card */
+  --color-surface-2: #1e2b4a;
+  --color-border: #2a3a5f;
+  --color-text: #e8ecf4;
+  --color-text-muted: #9fb0cc;
+  --color-primary: #e0a63c; /* âmbar/ouro — familiaridade com o Rubinot */
+  --color-primary-contrast: #1a1200;
+  --color-accent: #3fae8f; /* verde-esmeralda — diferenciação */
+  --color-warn: #e0a63c;
+  --color-online: #4fbf7b;
+  --color-offline: #8794ad;
+
+  --radius: 10px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --font-sans: ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --maxw: 1120px;
+}

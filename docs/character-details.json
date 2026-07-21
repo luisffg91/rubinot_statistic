@@ -1,0 +1,50 @@
+{
+    "player": {
+        "name": "Minlek Tanker",
+        "level": 1000,
+        "vocation": "Elite Knight",
+        "world": "Lunarian",
+        "sex": "Male",
+        "residence": "Roshamuul",
+        "lastlogin": "1784592722",
+        "created": 1718379720,
+        "comment": "😈🫡",
+        "account_created": 0,
+        "loyalty_points": 0,
+        "isHidden": true,
+        "recentlyTraded": false,
+        "guild": null,
+        "house": null,
+        "partner": null,
+        "formerNames": [
+            "Tank Juregsz"
+        ],
+        "title": null,
+        "auction": null,
+        "looktype": 152,
+        "lookhead": 78,
+        "lookbody": 79,
+        "looklegs": 79,
+        "lookfeet": 79,
+        "lookaddons": 1,
+        "vip_time": 1786485676,
+        "achievementPoints": 218
+    },
+    "deaths": [
+        {
+            "time": "1783552970",
+            "level": 990,
+            "killed_by": "field item",
+            "is_player": 0,
+            "mostdamage_by": "magma bubble",
+            "mostdamage_is_player": 0
+        }
+    ],
+    "otherCharacters": [],
+    "accountBadges": [],
+    "displayedAchievements": [],
+    "banInfo": null,
+    "canSeeCharacterIdentifiers": false,
+    "canSeeDeathDetails": false,
+    "foundByOldName": false
+}

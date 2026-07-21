@@ -1,0 +1,22 @@
+import { NextResponse } from 'next/server';
+import { GetServerSnapshot } from '@/application/use-cases/get-server-snapshot';
+import { RubinotWorldsClient, WORLDS_SOURCE } from '@/infrastructure/rubinot/rubinot-worlds-client';
+import { toSnapshotDto } from '@/app/_lib/to-snapshot-dto';
+
+export const dynamic = 'force-dynamic'; // sempre fresco (FR-002)
+
+const useCase = new GetServerSnapshot(new RubinotWorldsClient());
+
+/** GET /api/server-snapshot — proxy do /api/worlds com as regras de domínio aplicadas. */
+export async function GET() {
+  try {
+    const snapshot = await useCase.execute();
+    return NextResponse.json(toSnapshotDto(snapshot));
+  } catch {
+    // FR-009: degradação graciosa, sem vazar detalhe técnico.
+    return NextResponse.json(
+      { error: 'unavailable', source: WORLDS_SOURCE, fetchedAt: new Date().toISOString() },
+      { status: 503 },
+    );
+  }
+}
