@@ -3,14 +3,19 @@
 import { useState } from 'react';
 import type { ContactMessage } from '@/domain/entities/contact-message';
 import { validateContactMessage } from '@/domain/services/validate-contact-message';
-import type { ContactResponseDto } from '@/app/_lib/contact-dto';
 
 type FieldErrors = Partial<Record<keyof ContactMessage, string>>;
 type State = 'idle' | 'sending' | 'ok' | 'unavailable';
 
 const EMPTY: ContactMessage = { name: '', email: '', message: '' };
 
-/** Formulário de contato com a equipe. Valida no cliente (reuso da regra de domínio) e envia via BFF. */
+// Web3Forms é um serviço form→e-mail feito para uso client-side; a access key é pública por design
+// (o plano gratuito bloqueia envio server-side). Proteção anti-spam via allowlist de domínio/hCaptcha
+// no painel do Web3Forms. Ver docs/environment.md.
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+/** Formulário de contato com a equipe. Valida no cliente (regra de domínio) e envia ao Web3Forms. */
 export function ContactForm() {
   const [form, setForm] = useState<ContactMessage>(EMPTY);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -28,20 +33,26 @@ export function ContactForm() {
       return;
     }
     setErrors({});
+    // Sem chave configurada → degrada como "indisponível" (não quebra a página).
+    if (!ACCESS_KEY) {
+      setState('unavailable');
+      return;
+    }
     setState('sending');
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
+      // FormData (multipart) é "simple request" → sem preflight CORS. Enviar JSON dispararia um
+      // OPTIONS que o Web3Forms não responde com Access-Control-Allow-Origin (a chamada é bloqueada).
+      const payload = new FormData();
+      payload.append('access_key', ACCESS_KEY);
+      payload.append('subject', `Contato Rubinot Statistics — ${form.name}`);
+      payload.append('from_name', form.name);
+      payload.append('email', form.email);
+      payload.append('message', form.message);
+      const res = await fetch(WEB3FORMS_URL, { method: 'POST', body: payload });
+      const data = (await res.json().catch(() => ({ success: false }))) as { success?: boolean };
+      if (res.ok && data.success) {
         setState('ok');
         setForm(EMPTY);
-      } else if (res.status === 400) {
-        const data = (await res.json()) as Extract<ContactResponseDto, { error: 'invalid' }>;
-        setErrors(data.errors ?? {});
-        setState('idle');
       } else {
         setState('unavailable');
       }
