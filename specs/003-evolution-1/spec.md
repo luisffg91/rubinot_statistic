@@ -110,6 +110,28 @@ com acesso ao conteúdo completo na origem oficial.
 
 ---
 
+### User Story 6 - Streamers & Criadores patrocinados (Priority: P3)
+
+Um jogador quer descobrir os **streamers patrocinados pelo Rubinot que estão AO VIVO agora na Twitch** e os
+**canais de YouTube patrocinados** pelo Rubinot. Ele vê uma seção com os streamers online em destaque (nome do
+canal, título da live, link para assistir) e a lista de canais do YouTube patrocinados (nome e link).
+
+**Why this priority**: Fortalece o ecossistema do servidor e o plano de divulgação (streamers/criadores) — um
+argumento direto na proposta ao Rubinot. É engajamento/comunidade, então tem prioridade menor que os dados de
+gameplay.
+
+**Independent Test**: Abrir a seção de streamers/criadores e verificar que os streamers ao vivo aparecem em
+destaque (com link para a Twitch) e que os canais de YouTube patrocinados são listados (com link).
+
+**Acceptance Scenarios**:
+
+1. **DADO** uma lista curada de streamers patrocinados, **QUANDO** o jogador abre a seção, **ENTÃO** os que estão **ao vivo** na Twitch aparecem em destaque (canal, título da live, link), e os offline ficam depois ou ocultos.
+2. **DADO** a lista de canais de YouTube patrocinados, **QUANDO** o jogador abre a seção, **ENTÃO** os canais são exibidos com nome e link para o YouTube.
+3. **DADO** que a Twitch/YouTube está indisponível, **QUANDO** o jogador acessa, **ENTÃO** a seção degrada de forma graciosa (lista sem status ao vivo ou estado informativo), sem quebrar a página.
+4. **DADO** o modo demonstração, **QUANDO** o jogador abre a seção, **ENTÃO** vê streamers/canais **fictícios rotulados como exemplo** (nunca identidades reais sem consentimento).
+
+---
+
 ### Edge Cases
 
 - **Fonte indisponível/instável**: cada capacidade (ranking, power gamers, bosses, guilds, news) degrada de forma independente — a falha de uma não derruba as demais nem a página.
@@ -119,6 +141,7 @@ com acesso ao conteúdo completo na origem oficial.
 - **Reset/rollback de XP na fonte** (evento de servidor): o cálculo de ganho não deve exibir valores negativos como "ganho"; tratar deltas negativos como 0 ou sinalizar.
 - **Volume grande de ranking**: paginar/limitar (ex.: top N) mantendo desempenho e legibilidade.
 - **Modo demonstração**: os dados de exemplo MUST estar sempre rotulados como "exemplo/demonstração"; nunca podem ser confundidos com dados reais do servidor.
+- **Streamers/criadores**: streamer patrocinado que sai do ar entre atualizações deve deixar de aparecer como "ao vivo"; a seção não pode quebrar se a Twitch/YouTube estiver indisponível; no demo, identidades são fictícias.
 
 ## Requirements *(mandatory)*
 
@@ -139,6 +162,10 @@ com acesso ao conteúdo completo na origem oficial.
 - **FR-013**: Enquanto os endpoints reais não estiverem disponíveis, o sistema MUST operar em **modo demonstração**: as páginas da Evolução 1 renderizam a experiência completa (rankings, tiles e gráficos) com **dados de exemplo sintéticos e claramente rotulados**, em vez de estados de "indisponível".
 - **FR-014**: As páginas de ranking (Top Experiência e Power Gamers) MUST incluir **visualização gráfica** (ex.: sparklines / gráfico de evolução da experiência), tanto no modo demonstração quanto com dados reais.
 - **FR-015**: A troca de dados de exemplo para dados reais (quando a fonte for liberada) MUST ocorrer **atrás dos mesmos ports**, sem reescrever a UI — o modo demonstração é uma implementação de port, não uma tela separada.
+- **FR-016**: O sistema MUST exibir os **streamers patrocinados pelo Rubinot que estão ao vivo na Twitch** (canal, título da live e link), destacando quem está online.
+- **FR-017**: O sistema MUST exibir os **canais de YouTube patrocinados pelo Rubinot** (nome e link).
+- **FR-018**: A lista de patrocinados (Twitch/YouTube) MUST ser **curada** (mantida pela plataforma ou fornecida pelo Rubinot); o status "ao vivo" MUST vir da Twitch. Guilds/rankings não se aplicam aqui.
+- **FR-019**: No modo demonstração, os streamers/canais exibidos MUST ser **fictícios e rotulados como exemplo** — nunca identidades reais de pessoas sem consentimento.
 
 *Fora do escopo desta evolução*: hunt finder (Evolução 2); qualquer análise preditiva ou recomendação
 automática de caça.
@@ -152,6 +179,8 @@ automática de caça.
 - **Guild**: nome, mundo, quantidade/lista de membros (conforme disponível).
 - **Item de News (NewsItem)**: título, data, link para o conteúdo completo na origem.
 - **Origem do Dado (DataOrigin)**: rótulo que acompanha cada conjunto exibido — `oficial`, `derivado` ou `exemplo` — base da rastreabilidade (FR-011) e da distinção do modo demonstração.
+- **Streamer Patrocinado (SponsoredStreamer)**: plataforma (Twitch), canal/handle, nome de exibição, URL, `isLive` (bool), título da live e nº de espectadores (quando ao vivo).
+- **Canal Patrocinado (SponsoredChannel)**: plataforma (YouTube), nome do canal, URL (e info adicional como inscritos, quando disponível).
 
 ## Success Criteria *(mandatory)*
 
@@ -164,6 +193,7 @@ automática de caça.
 - **SC-005**: O boss e a criatura boostados do dia são exibidos corretamente quando a fonte informa o boosted.
 - **SC-006**: As páginas novas permanecem legíveis e utilizáveis em desktop e mobile, mantendo a identidade visual.
 - **SC-007**: No modo demonstração, 100% das páginas da Evolução 1 exibem conteúdo populado (rankings, tiles e gráficos) rotulado como "exemplo", sem estados de "indisponível" — validando a apresentação para stakeholders (ex.: staff do Rubinot).
+- **SC-008**: A seção de streamers/criadores exibe os streamers ao vivo em destaque (no demo, exemplos fictícios) e os canais de YouTube patrocinados, sem quebrar quando a Twitch/YouTube estiver indisponível.
 
 ## Assumptions
 
@@ -183,6 +213,9 @@ Cloudflare** do MVP (o allowlist solicitado na proposta cobre todas). Rastrear e
 - **E2** — Bosses boostados do dia → FR-007.
 - **D3** — Guilds → FR-008.
 - **D4** — News (fonte oficial) → FR-009.
+- **S1** — **Lista curada de patrocinados** (Twitch handles + canais de YouTube) → FR-016/017/018. Mantida pela plataforma ou fornecida pelo Rubinot (não é uma API do Rubinot).
+- **S2** — **Twitch Helix API** para status "ao vivo" → FR-016. Requer credenciais (Client ID/Secret) — **fora** do bloqueio Cloudflare do Rubinot (API própria da Twitch).
+- **S3** — **YouTube Data API** (opcional) para info dos canais → FR-017. Requer API key. Sem ela, exibir apenas nome + link.
 
 **Risco central**: sem o allowlist, nenhuma dessas fontes responde server-side (igual ao MVP). Além disso, os
 formatos/endpoints exatos (E1, E2, D3, D4) ainda são desconhecidos — devem ser confirmados e registrados em
