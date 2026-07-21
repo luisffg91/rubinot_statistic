@@ -8,6 +8,16 @@
 
 **Input**: User description: "Evolução 1 — Top Experiência, Ranking de Power Gamers (ganho de XP por dia/semana/mês, exige histórico), bosses boostados do dia, guilds e News (fonte oficial). Mantém arquitetura em camadas e compatibilidade com o MVP; dados dependem de endpoints do Rubinot ainda não confirmados (mesmo bloqueio Cloudflare)."
 
+## Clarifications
+
+### Session 2026-07-21
+
+- Q: Como a Evolução 1 é apresentada antes do allowlist dos endpoints? → A: **Modo demonstração** — todas as páginas renderizam a experiência completa (rankings, tiles e gráficos) com **dados de exemplo sintéticos, claramente rotulados**; ao liberar os endpoints reais, os mocks são substituídos atrás dos mesmos ports, sem reescrever a UI.
+- Q: Padrão de apresentação de referência? → A: Inspirado nos padrões do GuildStats (tabelas de ranking, tiles de estatística, sparklines/gráficos), sem copiar arte/identidade.
+- Q: Períodos do Power Gamers? → A: dia (24h), semana (7 dias), mês (30 dias).
+- Q: Tamanho do ranking e cadência de coleta? → A: top 100; snapshots diários (cadência ajustável).
+- Q: Escopo de Guilds no MVP da evolução? → A: contagem + lista + visão básica de uma guild (nome, mundo, membros conforme disponível).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Top Experiência (Priority: P1)
@@ -108,6 +118,7 @@ com acesso ao conteúdo completo na origem oficial.
 - **Empates de XP / mudança de nome**: exibir de forma consistente; mudança de nome não deve duplicar o personagem no ranking de ganho (rastrear por identificador estável, se disponível).
 - **Reset/rollback de XP na fonte** (evento de servidor): o cálculo de ganho não deve exibir valores negativos como "ganho"; tratar deltas negativos como 0 ou sinalizar.
 - **Volume grande de ranking**: paginar/limitar (ex.: top N) mantendo desempenho e legibilidade.
+- **Modo demonstração**: os dados de exemplo MUST estar sempre rotulados como "exemplo/demonstração"; nunca podem ser confundidos com dados reais do servidor.
 
 ## Requirements *(mandatory)*
 
@@ -123,8 +134,11 @@ com acesso ao conteúdo completo na origem oficial.
 - **FR-008**: O sistema MUST exibir a contagem e/ou a lista de guilds e permitir ver os dados principais de uma guild (nome, mundo, membros conforme disponível).
 - **FR-009**: O sistema MUST exibir as News recentes (título e data) e permitir acessar o conteúdo completo na origem oficial do Rubinot.
 - **FR-010**: Cada capacidade MUST degradar de forma graciosa e independente quando sua fonte estiver indisponível, preservando as demais e a página.
-- **FR-011**: Todo dado exibido MUST carregar rastreabilidade de origem (oficial vs. derivado/calculado) e o momento da coleta.
+- **FR-011**: Todo dado exibido MUST carregar rastreabilidade de origem — **oficial**, **derivado/calculado** ou **exemplo/demonstração** — e o momento da coleta. Dados de exemplo MUST ser rotulados como tais para o usuário (nunca apresentados como reais).
 - **FR-012**: As novas páginas MUST seguir a identidade visual e as práticas de responsividade já estabelecidas, sem quebrar as funcionalidades do MVP (US1 vitais e US2 busca de personagem).
+- **FR-013**: Enquanto os endpoints reais não estiverem disponíveis, o sistema MUST operar em **modo demonstração**: as páginas da Evolução 1 renderizam a experiência completa (rankings, tiles e gráficos) com **dados de exemplo sintéticos e claramente rotulados**, em vez de estados de "indisponível".
+- **FR-014**: As páginas de ranking (Top Experiência e Power Gamers) MUST incluir **visualização gráfica** (ex.: sparklines / gráfico de evolução da experiência), tanto no modo demonstração quanto com dados reais.
+- **FR-015**: A troca de dados de exemplo para dados reais (quando a fonte for liberada) MUST ocorrer **atrás dos mesmos ports**, sem reescrever a UI — o modo demonstração é uma implementação de port, não uma tela separada.
 
 *Fora do escopo desta evolução*: hunt finder (Evolução 2); qualquer análise preditiva ou recomendação
 automática de caça.
@@ -137,6 +151,7 @@ automática de caça.
 - **Boss Boostado (BoostedOfDay)**: boss do dia e criatura do dia (nome e identificação).
 - **Guild**: nome, mundo, quantidade/lista de membros (conforme disponível).
 - **Item de News (NewsItem)**: título, data, link para o conteúdo completo na origem.
+- **Origem do Dado (DataOrigin)**: rótulo que acompanha cada conjunto exibido — `oficial`, `derivado` ou `exemplo` — base da rastreabilidade (FR-011) e da distinção do modo demonstração.
 
 ## Success Criteria *(mandatory)*
 
@@ -148,6 +163,7 @@ automática de caça.
 - **SC-004**: Todas as capacidades novas degradam de forma independente sob indisponibilidade da fonte, sem derrubar a página nem as funcionalidades do MVP.
 - **SC-005**: O boss e a criatura boostados do dia são exibidos corretamente quando a fonte informa o boosted.
 - **SC-006**: As páginas novas permanecem legíveis e utilizáveis em desktop e mobile, mantendo a identidade visual.
+- **SC-007**: No modo demonstração, 100% das páginas da Evolução 1 exibem conteúdo populado (rankings, tiles e gráficos) rotulado como "exemplo", sem estados de "indisponível" — validando a apresentação para stakeholders (ex.: staff do Rubinot).
 
 ## Assumptions
 
