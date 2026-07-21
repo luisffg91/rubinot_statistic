@@ -15,5 +15,6 @@ export interface ServerSnapshotDto {
   worlds: WorldDto[];
   fetchedAt: string;
   source: string;
+  origin: 'oficial' | 'derivado' | 'exemplo';
   stale: boolean;
 }

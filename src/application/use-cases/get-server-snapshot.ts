@@ -11,12 +11,13 @@ export class GetServerSnapshot {
   constructor(private readonly worlds: WorldsRepository) {}
 
   async execute(): Promise<ServerSnapshot> {
-    const { worlds, source, fetchedAt } = await this.worlds.fetchWorlds();
+    const { worlds, source, fetchedAt, origin } = await this.worlds.fetchWorlds();
     return {
       worlds: sortWorlds(worlds),
       totalOnline: computeTotalOnline(worlds),
       fetchedAt,
       source,
+      origin,
     };
   }
 }
