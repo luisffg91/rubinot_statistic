@@ -30,7 +30,7 @@ src/
 │   ├── services/      # regras: computeTotalOnline (RG-1), deriveWorldStatus (RG-2),
 │   │                  #         sortWorlds (RG-3), isStale (RG-4)
 │   ├── ports/         # interfaces implementadas pela infra (WorldsRepository, ...)
-│   └── shared/        # DataEnvelope (origem+timestamp), Result (ok/not-found/unavailable)
+│   └── shared/        # DataOrigin (oficial/derivado/exemplo), Result (ok/not-found/unavailable)
 ├── application/
 │   └── use-cases/     # GetServerSnapshot (compõe port + regras)
 ├── infrastructure/
@@ -38,7 +38,7 @@ src/
 │   └── rubinot/       # RubinotWorldsClient + mappers/ (JSON externo → domínio)
 └── app/               # Next.js: UI (React) + BFF
     ├── api/           # Route Handlers (BFF): /api/server-snapshot
-    ├── components/    # ServerVitals (client, polling), DataBlock, OnlineCounter, WorldsList
+    ├── components/    # ServerVitals (client, polling), OnlineCounter, WorldsList, CharacterView
     ├── _lib/          # DTOs da fronteira BFF↔UI + toSnapshotDto
     └── styles/        # tokens.css (identidade visual própria)
 ```
