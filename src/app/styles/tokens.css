@@ -24,6 +24,8 @@
   --space-3: 16px;
   --space-4: 24px;
   --space-5: 40px;
-  --font-sans: ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-display: var(--font-cinzel), Georgia, 'Times New Roman', serif;
   --maxw: 1120px;
 }
