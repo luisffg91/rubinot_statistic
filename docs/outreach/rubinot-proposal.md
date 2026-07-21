@@ -62,14 +62,23 @@ Tudo de forma didática e acessível.
 
 ### Roadmap (evoluções previstas)
 
-1. **Evolução 1:** guilds, News (da fonte oficial), ranking/top de experiência, bosses boostados do dia.
-2. **Evolução 2:** hunt finder e ferramentas de apoio à caça.
+1. **Evolução 1:** guilds, News (da fonte oficial), ranking/top de experiência, bosses boostados do dia,
+   ranking de power gamers (quem mais ganha XP por período) e vitrine de streamers/criadores parceiros.
+2. **Evolução 2 — Ferramentas para o jogador (`/ferramentas`):** uma central de calculadoras úteis,
+   calculadas no próprio navegador (não dependem das suas APIs):
+   - **Treino de skill com varinha/exercise** — quanto tempo e quantos itens para subir magic level/skill,
+     com custo estimado.
+   - **Simulador de roda de habilidade** (Wheel of Destiny) — montar e comparar builds por vocação.
+   - **Divisão de loot** de hunt em grupo, **stamina**, **imbuements**, **blessings** e previsão de nível.
+   - **Hunt finder** — sugestão de spots por nível/vocação/lucro.
 - Cada evolução é especificada e testada antes de ir ao ar (qualidade como prioridade).
 
 ### O que o Rubinot ganha
 
 - **Vitrine e retenção:** um fansite ativo mantém a comunidade engajada e dá mais motivos para jogar.
 - **Tráfego direcionado:** banner e CTAs levando ao site oficial e ao download.
+- **Ferramentas que fixam o jogador:** calculadoras (treino de skill, roda de habilidade, divisão de loot)
+  transformam o fansite em rotina diária — mais tempo na comunidade do Rubinot.
 - **Pioneirismo:** ser o primeiro servidor alternativo com um fansite de estatísticas dedicado.
 - **Zero custo/risco:** hospedagem e manutenção por nossa conta; consumo de dados responsável (sem abuso,
   respeitando eventuais limites que vocês definirem).

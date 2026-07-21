@@ -21,7 +21,7 @@ Página inicial com:
 - **Busca de personagem** (em construção — ver "Estado atual").
 
 Fora do MVP (Evolução 1): guilds, News (fonte oficial já decidida), ranking/top de experiência e bosses
-boostados. Evolução 2: hunt finder.
+boostados. Evolução 2: hunt finder e uma **página de ferramentas** (calculadoras para o jogador).
 
 ## Stack
 
@@ -96,6 +96,22 @@ experiência completa antes da liberação das APIs do Rubinot:
 Cada capacidade fica atrás de um *port*; hoje um adapter **mock** (`src/infrastructure/mock/`) fornece os
 dados de exemplo. Quando os endpoints reais forem liberados, troca-se o adapter (via `infrastructure/config`)
 sem reescrever a UI. Detalhes em `specs/003-evolution-1/`.
+
+## Próximos passos (Evolução 2)
+
+Ainda não iniciada — cada item será especificado antes de implementado (Spec Kit). Ideias mapeadas:
+
+- **Página de ferramentas** (`/ferramentas`) — calculadoras úteis ao jogador, calculadas no cliente
+  (sem depender das APIs do Rubinot):
+  - **Treino de skill com varinha/rune** — quantas horas/exercise weapons (varinhas) para subir magic
+    level ou skill, com custo estimado.
+  - **Simulador de roda de habilidade** (Wheel of Destiny) — montar e comparar builds de pontos por vocação.
+  - Outras calculadoras candidatas: **divisão de loot** de hunt em grupo, **stamina**, **imbuements**
+    (materiais/custo), **blessings** e previsão de nível por XP/hora.
+- **Hunt finder** — sugerir spots de caça por nível/vocação/lucro.
+
+> As ferramentas são majoritariamente **offline/client-side** (fórmulas do jogo), então entregam valor
+> mesmo antes da liberação das APIs — bom candidato para as próximas entregas do modo demonstração.
 
 ## Estado atual
 
