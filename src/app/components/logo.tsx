@@ -1,7 +1,7 @@
 /**
- * Logo do Rubinot Statistics — arte original (homenagem, não cópia).
- * Emblema: escudo (vibe medieval do Rubinot) com barras de gráfico ascendentes (estatísticas).
- * Wordmark: "RUBINOT / STATISTICS" na fonte display (Cinzel).
+ * Logo do Rubinot Statistics — arte original que ecoa o estilo do Rubinot (não é cópia).
+ * Emblema: escudo azul com espada dourada apontada para baixo (homenagem ao logo do Rubinot,
+ * que traz um escudo azul + espada dourada). Wordmark "RUBINOT / STATISTICS" em fonte display.
  */
 export function Logo({ withWordmark = true }: { withWordmark?: boolean }) {
   return (
@@ -18,23 +18,26 @@ export function Logo({ withWordmark = true }: { withWordmark?: boolean }) {
             <stop offset="1" stopColor="#d9932f" />
           </linearGradient>
         </defs>
+        {/* Escudo (eco do azul do Rubinot) */}
         <path
-          d="M24 4 L40 9 L40 22 C40 32 33 40 24 43.5 C15 40 8 32 8 22 L8 9 Z"
+          d="M24 4 L40 9 L40 22 C40 32.5 33 40.5 24 44 C15 40.5 8 32.5 8 22 L8 9 Z"
           fill="#16203a"
-          stroke="url(#rs-gold)"
+          stroke="#4aa3e0"
           strokeWidth="2.5"
           strokeLinejoin="round"
         />
-        <g fill="url(#rs-gold)">
-          <rect x="15" y="27" width="5.5" height="6" rx="1" />
-          <rect x="21.75" y="22" width="5.5" height="11" rx="1" />
-          <rect x="28.5" y="17" width="5.5" height="16" rx="1" />
+        {/* Espada dourada apontando para baixo */}
+        <g fill="url(#rs-gold)" stroke="#1a1200" strokeWidth="0.6" strokeLinejoin="round">
+          <circle cx="24" cy="12.6" r="2.2" />
+          <rect x="22.9" y="14.2" width="2.2" height="2.6" />
+          <rect x="18.4" y="16.6" width="11.2" height="2.4" rx="1.1" />
+          <path d="M22.2 19.2 L25.8 19.2 L24.9 32 L24 35.6 L23.1 32 Z" />
         </g>
       </svg>
       {withWordmark && (
         <span className="logo__word">
-          <span className="logo__name">RUBINOT</span>
-          <span className="logo__sub">STATISTICS</span>
+          <span className="logo__kicker">RUBINOT</span>
+          <span className="logo__name">STATISTICS</span>
         </span>
       )}
     </span>

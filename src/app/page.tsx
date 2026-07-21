@@ -4,6 +4,7 @@ import { toSnapshotDto } from '@/app/_lib/to-snapshot-dto';
 import type { ServerSnapshotDto } from '@/app/_lib/snapshot-dto';
 import { ServerVitals } from '@/app/components/server-vitals';
 import { CharacterSearch } from '@/app/components/character-search';
+import { RubinotBanner } from '@/app/components/rubinot-banner';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,12 +22,13 @@ export default async function HomePage() {
   const snapshot = await loadInitialSnapshot();
   return (
     <main className="container">
-      <header className="hero">
+      <header className="hero hero--art">
         <h1>As estatísticas do Rubinot</h1>
         <p>O pulso do servidor em tempo real — de forma didática.</p>
         <CharacterSearch />
       </header>
       <ServerVitals initial={snapshot} />
+      <RubinotBanner />
     </main>
   );
 }
