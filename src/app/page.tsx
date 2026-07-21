@@ -2,19 +2,23 @@ import { GetServerSnapshot } from '@/application/use-cases/get-server-snapshot';
 import { RubinotWorldsClient } from '@/infrastructure/rubinot/rubinot-worlds-client';
 import { GetBoostedOfDay } from '@/application/use-cases/get-boosted-of-day';
 import { GetSponsoredStreamers } from '@/application/use-cases/get-sponsored-streamers';
+import { GetNews } from '@/application/use-cases/get-news';
 import {
   getBossRepository,
   getSponsoredStreamersRepository,
+  getNewsRepository,
 } from '@/infrastructure/config/repositories';
 import { toSnapshotDto } from '@/app/_lib/to-snapshot-dto';
 import { toBoostedDto, type BoostedDto } from '@/app/_lib/boss-dto';
 import { toStreamersDto, type StreamerDto } from '@/app/_lib/streamers-dto';
+import { toNewsDto, type NewsItemDto } from '@/app/_lib/news-dto';
 import type { ServerSnapshotDto } from '@/app/_lib/snapshot-dto';
 import { ServerVitals } from '@/app/components/server-vitals';
 import { CharacterSearch } from '@/app/components/character-search';
 import { RubinotBanner } from '@/app/components/rubinot-banner';
 import { BoostedCards } from '@/app/components/boosted-cards';
 import { StreamerCard } from '@/app/components/streamer-card';
+import { NewsList } from '@/app/components/news-list';
 import { DemoBadge } from '@/app/components/demo-badge';
 
 export const dynamic = 'force-dynamic';
@@ -46,11 +50,20 @@ async function loadLiveStreamers(): Promise<StreamerDto[]> {
   }
 }
 
+async function loadNews(): Promise<NewsItemDto[]> {
+  try {
+    return toNewsDto(await new GetNews(getNewsRepository()).execute()).items;
+  } catch {
+    return [];
+  }
+}
+
 export default async function HomePage() {
-  const [snapshot, boosted, live] = await Promise.all([
+  const [snapshot, boosted, live, news] = await Promise.all([
     loadInitialSnapshot(),
     loadBoosted(),
     loadLiveStreamers(),
+    loadNews(),
   ]);
 
   return (
@@ -83,6 +96,13 @@ export default async function HomePage() {
               <StreamerCard key={s.channel} streamer={s} />
             ))}
           </div>
+        </section>
+      )}
+
+      {news.length > 0 && (
+        <section>
+          <h2 className="section-title">News</h2>
+          <NewsList items={news} />
         </section>
       )}
 

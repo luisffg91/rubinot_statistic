@@ -33,7 +33,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/ranking">Ranking</Link>
               <Link href="/power-gamers">Power Gamers</Link>
               <Link href="/guilds">Guilds</Link>
-              <Link href="/news">News</Link>
               <Link href="/streamers">Streamers</Link>
               <Link href="/contato">Contato</Link>
             </nav>
