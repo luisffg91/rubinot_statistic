@@ -31,3 +31,23 @@ export async function getJson<T>(url: string, opts: GetJsonOptions = {}): Promis
     clearTimeout(timer);
   }
 }
+
+/** POST JSON com timeout; mesmo tratamento de erro tipado do getJson. */
+export async function postJson<T>(url: string, body: unknown, opts: GetJsonOptions = {}): Promise<T> {
+  const { timeoutMs = 8_000, headers } = opts;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: { 'Content-Type': 'application/json', ...headers },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new HttpError(res.status, `HTTP ${res.status}`);
+    return (await res.json()) as T;
+  } finally {
+    clearTimeout(timer);
+  }
+}
