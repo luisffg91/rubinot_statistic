@@ -555,6 +555,11 @@ a {
 }
 
 /* --- Tabela de ranking --- */
+/* Permite rolagem horizontal da tabela em telas estreitas, sem estourar a página. */
+.table-scroll {
+  overflow-x: auto;
+}
+
 .ranking-table {
   width: 100%;
   border-collapse: collapse;

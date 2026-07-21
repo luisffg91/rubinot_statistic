@@ -81,6 +81,22 @@ Todas as fontes externas são rastreadas em [`docs/data-sources.md`](docs/data-s
 - Fluxo: feature branch → PR → CI verde → merge → deploy. Detalhes e passos de setup em
   [`docs/ci-cd.md`](docs/ci-cd.md).
 
+## Evolução 1 (modo demonstração)
+
+Novas páginas, hoje populadas com **dados de exemplo** (rotulados como "dados de exemplo") para demonstrar a
+experiência completa antes da liberação das APIs do Rubinot:
+
+- `/ranking` — Top Experiência (filtro por mundo).
+- `/power-gamers` — quem mais ganhou XP por dia/semana/mês (com sparkline).
+- `/bosses` — boss e criatura boostados do dia.
+- `/guilds` — lista e detalhe de guilds.
+- `/news` — novidades do servidor.
+- `/streamers` — streamers patrocinados ao vivo (Twitch) + canais de YouTube.
+
+Cada capacidade fica atrás de um *port*; hoje um adapter **mock** (`src/infrastructure/mock/`) fornece os
+dados de exemplo. Quando os endpoints reais forem liberados, troca-se o adapter (via `infrastructure/config`)
+sem reescrever a UI. Detalhes em `specs/003-evolution-1/`.
+
 ## Estado atual
 
 - **US1 (vitais do servidor)**: ✅ implementada e testada (unit + E2E).

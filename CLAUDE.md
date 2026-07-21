@@ -74,7 +74,11 @@ src/
 ## Escopo por fase
 
 - **MVP (`specs/001-home-dashboard`)**: US1 (online + mundos) ✅ e US2 (busca de personagem) ✅ implementadas.
-- **Evolução 1**: guilds, News (fonte oficial), ranking/top exp, bosses boostados.
+- **Evolução 1 (`specs/003-evolution-1`)**: Top Experiência, Power Gamers, Bosses, Guilds, News e
+  Streamers/Criadores — implementadas em **modo demonstração** (dados de exemplo rotulados, sem DB). Cada
+  capacidade tem um *port* + adapter `MockXRepository` em `src/infrastructure/mock/`; o seletor em
+  `src/infrastructure/config/repositories.ts` troca para o client real (Onda 2) sem tocar na UI.
+  Onda 2 (pós-allowlist): clients reais, persistência (Postgres) + Vercel Cron para Power Gamers, Twitch/YouTube.
 - **Evolução 2**: hunt finder.
 - Cada evolução é **especificada antes** de planejada/implementada (Princípio V). Não adicionar itens fora
   do escopo da fase atual.
