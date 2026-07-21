@@ -6,6 +6,7 @@ import { REFRESH_INTERVAL_MS } from '@/domain/services/staleness';
 import { DataBlock } from './data-block';
 import { OnlineCounter } from './online-counter';
 import { WorldsList } from './worlds-list';
+import { DemoBadge } from './demo-badge';
 
 function updatedLabel(fetchedAt: string | null): string {
   if (!fetchedAt) return 'sem atualização';
@@ -63,6 +64,7 @@ export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null })
         unavailable={unavailable}
       >
         <OnlineCounter total={snapshot?.totalOnline ?? null} />
+        {snapshot?.origin === 'exemplo' && <DemoBadge />}
       </DataBlock>
 
       <DataBlock
@@ -73,6 +75,7 @@ export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null })
         unavailable={unavailable}
       >
         {snapshot && <WorldsList worlds={snapshot.worlds} />}
+        {snapshot?.origin === 'exemplo' && <DemoBadge />}
       </DataBlock>
     </div>
   );

@@ -16,6 +16,7 @@ export function toSnapshotDto(snapshot: ServerSnapshot, stale = false): ServerSn
     })),
     fetchedAt: snapshot.fetchedAt.toISOString(),
     source: snapshot.source,
+    origin: snapshot.origin,
     stale,
   };
 }

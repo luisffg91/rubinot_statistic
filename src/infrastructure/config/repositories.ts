@@ -1,9 +1,12 @@
+import type { WorldsRepository } from '@/domain/ports/worlds-repository';
 import type { RankingRepository } from '@/domain/ports/ranking-repository';
 import type { PowerGamersRepository } from '@/domain/ports/power-gamers-repository';
 import type { BossRepository } from '@/domain/ports/boss-repository';
 import type { GuildsRepository } from '@/domain/ports/guilds-repository';
 import type { NewsRepository } from '@/domain/ports/news-repository';
 import type { SponsoredStreamersRepository } from '@/domain/ports/sponsored-streamers-repository';
+import { RubinotWorldsClient } from '@/infrastructure/rubinot/rubinot-worlds-client';
+import { MockWorldsRepository } from '@/infrastructure/mock/mock-worlds-repository';
 import { MockRankingRepository } from '@/infrastructure/mock/mock-ranking-repository';
 import { MockPowerGamersRepository } from '@/infrastructure/mock/mock-power-gamers-repository';
 import { MockBossRepository } from '@/infrastructure/mock/mock-boss-repository';
@@ -17,6 +20,13 @@ import { TibiaBossRepository } from '@/infrastructure/tibiadata/tibia-boss-repos
  * Onda 2: quando as env `RUBINOT_*` existirem, retornar o client real atrás do MESMO port
  * (troca local, sem tocar na UI — FR-015).
  */
+export function getWorldsRepository(): WorldsRepository {
+  // Com RUBINOT_WORLDS_URL configurada (allowlist) → API real. Sem ela (demo) → dados de exemplo,
+  // para a home ficar apresentável antes da liberação.
+  if (process.env.RUBINOT_WORLDS_URL) return new RubinotWorldsClient();
+  return new MockWorldsRepository();
+}
+
 export function getRankingRepository(): RankingRepository {
   // if (process.env.RUBINOT_RANKING_URL) return new RubinotRankingClient(); // Onda 2
   return new MockRankingRepository();

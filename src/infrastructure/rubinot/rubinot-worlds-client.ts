@@ -17,6 +17,6 @@ export class RubinotWorldsClient implements WorldsRepository {
       headers: { 'User-Agent': RUBINOT_USER_AGENT, Accept: 'application/json' },
     });
     const worlds = mapWorlds(payload).map(deriveWorldStatus);
-    return { worlds, source: WORLDS_SOURCE, fetchedAt: new Date() };
+    return { worlds, source: WORLDS_SOURCE, fetchedAt: new Date(), origin: 'oficial' as const };
   }
 }

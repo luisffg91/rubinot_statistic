@@ -1,9 +1,9 @@
 import { GetServerSnapshot } from '@/application/use-cases/get-server-snapshot';
-import { RubinotWorldsClient } from '@/infrastructure/rubinot/rubinot-worlds-client';
 import { GetBoostedOfDay } from '@/application/use-cases/get-boosted-of-day';
 import { GetSponsoredStreamers } from '@/application/use-cases/get-sponsored-streamers';
 import { GetNews } from '@/application/use-cases/get-news';
 import {
+  getWorldsRepository,
   getBossRepository,
   getSponsoredStreamersRepository,
   getNewsRepository,
@@ -25,7 +25,7 @@ export const dynamic = 'force-dynamic';
 
 async function loadInitialSnapshot(): Promise<ServerSnapshotDto | null> {
   try {
-    return toSnapshotDto(await new GetServerSnapshot(new RubinotWorldsClient()).execute());
+    return toSnapshotDto(await new GetServerSnapshot(getWorldsRepository()).execute());
   } catch {
     return null;
   }
