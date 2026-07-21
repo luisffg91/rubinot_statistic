@@ -3,6 +3,7 @@ import { RubinotWorldsClient } from '@/infrastructure/rubinot/rubinot-worlds-cli
 import { toSnapshotDto } from '@/app/_lib/to-snapshot-dto';
 import type { ServerSnapshotDto } from '@/app/_lib/snapshot-dto';
 import { ServerVitals } from '@/app/components/server-vitals';
+import { CharacterSearch } from '@/app/components/character-search';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,6 +24,7 @@ export default async function HomePage() {
       <header className="hero">
         <h1>Rubibot Statistics</h1>
         <p>O pulso do servidor Rubinot em tempo real.</p>
+        <CharacterSearch />
       </header>
       <ServerVitals initial={snapshot} />
     </main>
