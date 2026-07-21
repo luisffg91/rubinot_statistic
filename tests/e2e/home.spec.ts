@@ -51,3 +51,17 @@ test('fonte indisponível degrada sem quebrar a página (FR-009)', async ({ page
   // A página continua de pé (título visível).
   await expect(page.getByRole('heading', { name: 'Rubibot Statistics' })).toBeVisible();
 });
+
+test('home é utilizável em viewport mobile (375px), sem overflow horizontal (T050)', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.route('**/api/server-snapshot', (route) => route.fulfill({ json: snapshot }));
+  await page.goto('/');
+
+  await expect(page.getByTestId('online-counter')).toContainText('2.241');
+  await expect(page.getByTestId('worlds-list')).toContainText('Elysian');
+  // A página não deve rolar horizontalmente no mobile.
+  const noHorizontalOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+  );
+  expect(noHorizontalOverflow).toBe(true);
+});
