@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import type { ServerSnapshotDto, WorldDto } from '@/app/_lib/snapshot-dto';
 import { REFRESH_INTERVAL_MS } from '@/domain/services/staleness';
-import { DataBlock } from './data-block';
 import { OnlineCounter } from './online-counter';
 import { WorldsList } from './worlds-list';
 import { DemoBadge } from './demo-badge';
@@ -16,7 +15,7 @@ function updatedLabel(fetchedAt: string | null): string {
   return `atualizado há ${secs}s`;
 }
 
-/** Estatísticas de apoio derivadas dos mundos, para dar corpo ao card de online. */
+/** Estatísticas de apoio derivadas dos mundos, para dar corpo ao resumo. */
 function onlineStats(worlds: WorldDto[], total: number) {
   const onlineCount = worlds.filter((w) => w.status === 'online').length;
   const busiest = worlds.reduce<WorldDto | null>(
@@ -28,8 +27,9 @@ function onlineStats(worlds: WorldDto[], total: number) {
 }
 
 /**
- * Componente cliente dos vitais do servidor: faz polling do BFF (30s) e mantém o último
- * valor conhecido em caso de falha, sinalizando staleness (FR-002/003/009/010).
+ * Vitais do servidor num único card ("Status do servidor"): total online + estatísticas de
+ * apoio no topo e a lista de mundos abaixo. Faz polling do BFF (30s), mantém o último valor
+ * conhecido em falha e sinaliza staleness (FR-002/003/009/010).
  */
 export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null }) {
   const [snapshot, setSnapshot] = useState<ServerSnapshotDto | null>(initial);
@@ -75,49 +75,64 @@ export function ServerVitals({ initial }: { initial: ServerSnapshotDto | null })
   const updated = mounted ? updatedLabel(snapshot?.fetchedAt ?? null) : 'atualizado agora';
 
   return (
-    <div className="grid vitals-grid">
-      <DataBlock
-        title="Jogadores online"
-        updatedLabel={updated}
-        stale={stale}
-        unavailable={unavailable}
-      >
-        <OnlineCounter total={snapshot?.totalOnline ?? null} />
+    <section className="home-section">
+      <h2 className="section-title">
+        Status do servidor
         {snapshot?.origin === 'exemplo' && <DemoBadge />}
-        {stats && (
-          <dl className="vitals-stats">
-            <div>
-              <dt>Mundos online</dt>
-              <dd>{stats.onlineCount}</dd>
+        {stale && (
+          <span className="badge badge--warn" role="status">
+            possivelmente desatualizado
+          </span>
+        )}
+      </h2>
+
+      <div className="panel status-card">
+        {unavailable ? (
+          <p className="data-block__unavailable" role="status">
+            Dados temporariamente indisponíveis. Tentaremos novamente automaticamente.
+          </p>
+        ) : (
+          <>
+            <div className="status-card__summary">
+              <OnlineCounter total={snapshot?.totalOnline ?? null} />
+              {stats && (
+                <dl className="vitals-stats">
+                  <div>
+                    <dt>Mundos online</dt>
+                    <dd>{stats.onlineCount}</dd>
+                  </div>
+                  {stats.busiest && (
+                    <div>
+                      <dt>Mais movimentado</dt>
+                      <dd>
+                        {stats.busiest.name}{' '}
+                        <span className="vitals-stats__num">
+                          {nf.format(stats.busiest.playersOnline)}
+                        </span>
+                      </dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt>Média por mundo</dt>
+                    <dd>{nf.format(stats.average)}</dd>
+                  </div>
+                </dl>
+              )}
             </div>
-            {stats.busiest && (
-              <div>
-                <dt>Mais movimentado</dt>
-                <dd>
-                  {stats.busiest.name}{' '}
-                  <span className="vitals-stats__num">
-                    {nf.format(stats.busiest.playersOnline)}
-                  </span>
-                </dd>
+
+            {snapshot && (
+              <div className="status-card__worlds">
+                <h3 className="status-card__worlds-title">Mundos</h3>
+                <WorldsList worlds={snapshot.worlds} />
               </div>
             )}
-            <div>
-              <dt>Média por mundo</dt>
-              <dd>{nf.format(stats.average)}</dd>
-            </div>
-          </dl>
+          </>
         )}
-      </DataBlock>
 
-      <DataBlock
-        title="Mundos"
-        updatedLabel={updated}
-        stale={stale}
-        unavailable={unavailable}
-      >
-        {snapshot && <WorldsList worlds={snapshot.worlds} />}
-        {snapshot?.origin === 'exemplo' && <DemoBadge />}
-      </DataBlock>
-    </div>
+        <footer className="data-block__footer">
+          <span>{updated}</span>
+        </footer>
+      </div>
+    </section>
   );
 }

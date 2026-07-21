@@ -67,7 +67,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <main className="container">
+    <main className="container home">
       <header className="hero hero--art">
         <h1>As estatísticas do Rubinot</h1>
         <p>O pulso do servidor em tempo real — de forma didática.</p>
@@ -75,7 +75,7 @@ export default async function HomePage() {
       </header>
 
       {news.length > 0 && (
-        <section>
+        <section className="home-section">
           <h2 className="section-title">News</h2>
           <NewsList items={news} />
         </section>
@@ -84,7 +84,7 @@ export default async function HomePage() {
       <ServerVitals initial={snapshot} />
 
       {boosted && (
-        <section>
+        <section className="home-section">
           <h2 className="section-title">
             Boosted do dia
             {boosted.origin === 'exemplo' && <DemoBadge />}
@@ -94,7 +94,7 @@ export default async function HomePage() {
       )}
 
       {live.length > 0 && (
-        <section>
+        <section className="home-section">
           <h2 className="section-title">
             Streamers ao vivo <span className="live-count">{live.length}</span>
           </h2>
