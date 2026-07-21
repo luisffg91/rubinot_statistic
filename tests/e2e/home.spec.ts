@@ -48,8 +48,8 @@ test('fonte indisponível degrada sem quebrar a página (FR-009)', async ({ page
   await page.goto('/');
 
   await expect(page.getByText(/temporariamente indisponíveis/i).first()).toBeVisible();
-  // A página continua de pé (título visível).
-  await expect(page.getByRole('heading', { name: 'Rubibot Statistics' })).toBeVisible();
+  // A página continua de pé (tagline da hero visível).
+  await expect(page.getByRole('heading', { name: 'As estatísticas do Rubinot' })).toBeVisible();
 });
 
 test('home é utilizável em viewport mobile (375px), sem overflow horizontal (T050)', async ({ page }) => {

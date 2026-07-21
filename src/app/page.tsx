@@ -22,8 +22,8 @@ export default async function HomePage() {
   return (
     <main className="container">
       <header className="hero">
-        <h1>Rubibot Statistics</h1>
-        <p>O pulso do servidor Rubinot em tempo real.</p>
+        <h1>As estatísticas do Rubinot</h1>
+        <p>O pulso do servidor em tempo real — de forma didática.</p>
         <CharacterSearch />
       </header>
       <ServerVitals initial={snapshot} />
