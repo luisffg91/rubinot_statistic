@@ -6,6 +6,9 @@ Apresentação para anexar ao e-mail da proposta ao Rubinot.
   Cinzel/Inter e o logo). É o "código" do deck; edite aqui.
 - **Entregável:** [`../rubinot-statistics-proposta.pdf`](../rubinot-statistics-proposta.pdf) — PDF pronto
   para anexar.
+- **Assets:** `assets/` — screenshots reais do site (capturados da versão em produção) e o QR code
+  (`qr.svg`, gerado com `npx qrcode -t svg -o assets/qr.svg "https://rubinot-statistic.vercel.app/"`).
+  Para atualizar as telas, recapture com o site rodando (`next start`).
 
 ## Como regenerar o PDF após editar o `deck.html`
 

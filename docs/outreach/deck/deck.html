@@ -31,6 +31,7 @@
         font-family: var(--sans);
         color: var(--text);
         background: var(--bg);
+        counter-reset: slide;
       }
 
       .slide {
@@ -46,6 +47,7 @@
           var(--bg);
         overflow: hidden;
         break-after: page;
+        counter-increment: slide;
       }
       .slide:last-of-type {
         break-after: auto;
@@ -289,6 +291,77 @@
         margin-top: 4px;
         line-height: 1.35;
       }
+
+      /* Numeração automática dos slides (footer) */
+      .pageno::before {
+        content: counter(slide, decimal-leading-zero);
+      }
+
+      /* Slide de screenshots */
+      .shots {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 26px;
+        margin-top: 10px;
+        align-items: start;
+      }
+      .shots__col {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .shot {
+        margin: 0;
+      }
+      .shot img {
+        display: block;
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+      }
+      .shot figcaption {
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* QR code (slide de contato) */
+      .qr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        margin-top: 30px;
+      }
+      .qr__card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 12px;
+        width: 148px;
+        height: 148px;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      }
+      .qr__card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .qr__label {
+        text-align: left;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.4;
+      }
+      .qr__label b {
+        display: block;
+        color: var(--text);
+        font-family: var(--display);
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
     </style>
   </head>
   <body>
@@ -346,7 +419,7 @@
         <li><b>Respeita a identidade de vocês</b> <span>e deixa explícito que é um fansite não-oficial.</span></li>
         <li><b>Qualidade em 1º lugar</b> <span>— transparência da origem dos dados e degradação graciosa.</span></li>
       </ul>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>02</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 3. MVP NO AR -->
@@ -361,7 +434,30 @@
         <div class="card"><h3>Degradação graciosa</h3><p>Se uma fonte falha, o bloco degrada sem quebrar a página.</p></div>
         <div class="card"><h3>Origem transparente</h3><p>Todo dado mostra de onde veio — nada de números "mágicos".</p></div>
       </div>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>03</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
+    </section>
+
+    <!-- 3b. SCREENSHOTS REAIS -->
+    <section class="slide">
+      <div class="kicker">Veja no ar</div>
+      <h2>A experiência, hoje</h2>
+      <div class="shots">
+        <figure class="shot shot--big">
+          <img src="assets/shot-experiencia.png" alt="Página do personagem — aba Experiência" />
+          <figcaption>Personagem — aba Experiência (histórico de XP)</figcaption>
+        </figure>
+        <div class="shots__col">
+          <figure class="shot">
+            <img src="assets/shot-status.png" alt="Status do servidor — online e mundos" />
+            <figcaption>Status do servidor — online e mundos</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/shot-hero.png" alt="Home — busca de personagem" />
+            <figcaption>Home — busca de personagem</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 4. EVOLUÇÃO 1 -->
@@ -379,7 +475,7 @@
       <p class="lead mt" style="font-size: 18px">
         Hoje com <b class="gold">dados de exemplo rotulados</b> — a fonte real entra assim que a API for liberada, sem reescrever a página.
       </p>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>04</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 5. PÁGINA DO PERSONAGEM -->
@@ -397,7 +493,7 @@
         </div>
       </div>
       <p class="lead mt" style="font-size: 18px">Melhor dia, média diária e previsão de nível — tudo em um lugar.</p>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>05</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 6. EVOLUÇÃO 2 — FERRAMENTAS -->
@@ -414,7 +510,7 @@
       <p class="lead mt">
         <b class="accent">Client-side</b> (fórmulas do jogo): entregam valor <b>mesmo antes</b> da liberação da API e transformam o fansite em rotina diária.
       </p>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>06</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 7. O PEDIDO -->
@@ -426,7 +522,7 @@
         <li>Bastaria <b>liberar o User-Agent</b> <span class="mono">RubibotStatistics/1.0</span> — ou orientar sobre uma <b>API oficial para fansites</b>.</li>
         <li><b>Consumo responsável:</b> feliz em adotar cache e limites de frequência que vocês definirem.</li>
       </ul>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>07</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 8. O QUE O RUBINOT GANHA -->
@@ -439,7 +535,7 @@
         <div class="card"><h3>Divulgação</h3><p>Streamers/criadores, overlays para stream e conteúdo semanal com os dados.</p></div>
         <div class="card"><h3>Zero custo e risco</h3><p>Hospedagem e manutenção por nossa conta; pioneirismo entre os OTs.</p></div>
       </div>
-      <div class="foot"><span class="brand">Rubinot Statistics</span><span>08</span></div>
+      <div class="foot"><span class="brand">Rubinot Statistics</span><span class="pageno"></span></div>
     </section>
 
     <!-- 9. CONTATO -->
@@ -456,8 +552,17 @@
         <span class="gold">rubinotstatistics@gmail.com</span><br />
         rubinot-statistic.vercel.app
       </p>
-      <p class="lead" style="margin-top: 8px; font-size: 16px">Obrigado pelo trabalho de vocês no servidor!</p>
-      <div class="foot"><span class="brand">Fansite não-oficial · feito por fãs</span><span>09</span></div>
+      <div class="qr">
+        <div class="qr__card">
+          <img src="assets/qr.svg" alt="QR code para rubinot-statistic.vercel.app" />
+        </div>
+        <div class="qr__label">
+          <b>Acesse agora</b>
+          Aponte a câmera para o QR code<br />ou visite rubinot-statistic.vercel.app
+        </div>
+      </div>
+      <p class="lead" style="margin-top: 22px; font-size: 16px">Obrigado pelo trabalho de vocês no servidor!</p>
+      <div class="foot"><span class="brand">Fansite não-oficial · feito por fãs</span><span class="pageno"></span></div>
     </section>
 
     <script>
