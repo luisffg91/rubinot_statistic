@@ -51,12 +51,12 @@ merge na main. Sem tokens no GitHub.
 O repositório já está conectado ao Vercel (produção no ar na URL acima). Preview por PR e produção ao merge
 na `main` estão ativos.
 
-### M2 — Proteção de branch (main)
+### M2 — Proteção de branch (main) ✅ concluído
 
-1. GitHub → **Settings → Branches** → regra para `main`.
-2. **Require a pull request before merging**.
-3. **Require status checks to pass** → selecionar o check **CI** (aparece após a 1ª execução).
-4. Salvar.
+Repo tornado **público** e proteção configurada via `gh api`: a `main` exige o check **`test`** (strict) para
+merge. Merge com CI vermelho fica bloqueado (FR-004 / SC-002). `enforce_admins=false` (evita lockout do dono).
+
+> O nome do check exigido é **`test`** (o job do workflow), não "CI" (nome do workflow).
 
 ## Rodar o que o CI roda (local)
 

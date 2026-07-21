@@ -42,7 +42,7 @@ description: "Task list para CI/CD Pipeline — Rubibot Statistics"
 - [X] T006 [US1] No `ci.yml`, etapas sequenciais (falha-cedo): `npm ci` → `npm run lint` → `npm run test:unit` → `npm run build`
 - [X] T007 [US1] No `ci.yml`, etapas de E2E: `npx playwright install --with-deps chromium` → `npm run test:e2e` (RG-CI-2: E2E determinístico, sem Rubinot real)
 - [X] T008 [US1] Garantir que nenhuma etapa usa `continue-on-error` e que não há segredos de deploy no workflow (RG-CI-1 / RG-CI-3 / FR-008)
-- [ ] T009 🧑 [US1] **M2 — Passo manual**: ativar branch protection na `main` exigindo o check **CI** (ver `contracts/manual-setup.md`). Só é possível após a 1ª execução do workflow.
+- [X] T009 🧑 [US1] **M2**: branch protection na `main` exigindo o check **`test`** — ✅ CONCLUÍDO (repo tornado público + proteção via `gh api`; strict=true).
 
 **Checkpoint**: CI operacional e main protegida — proteção mínima de confiança entregue.
 
@@ -68,8 +68,8 @@ description: "Task list para CI/CD Pipeline — Rubibot Statistics"
 - [X] T012 [P] Criar `docs/ci-cd.md`: fluxo (feature branch → PR → CI → merge → deploy), descrição do `ci.yml` e os passos manuais M1/M2 (FR-010)
 - [X] T013 [P] Atualizar `README.md` e `CLAUDE.md` com uma seção de CI/CD (como o pipeline roda; disciplina de feature branch → PR → merge com CI verde)
 - [X] T014 **Bootstrap** — commit do baseline (MVP US1 + `ci.yml` + `docs/` + specs) **direto na `main`** como marco inicial; `git push origin main`
-- [ ] T015 🧑 **Validação (US1)** — abrir um PR de teste: confirmar CI verde libera merge e CI vermelho bloqueia (SC-001/SC-002)
-- [ ] T016 🧑 **Validação (US2)** — no PR de teste, abrir o preview do Vercel (SC-003); após merge, conferir a produção (SC-004)
+- [X] T015 🧑 **Validação (US1)** — ✅ PR #1: check `test` verde (1m40s) liberou o merge; branch protection agora bloqueia merge sem CI verde (SC-001/SC-002)
+- [X] T016 🧑 **Validação (US2)** — ✅ PR #1: preview do Vercel gerado (SC-003); merge na main publicou produção em https://rubinot-statistic.vercel.app/ (SC-004)
 
 ---
 
