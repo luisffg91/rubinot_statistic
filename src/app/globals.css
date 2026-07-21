@@ -325,23 +325,54 @@ a {
   gap: var(--space-3);
 }
 
-/* Vitais: cada card cresce só até o seu conteúdo (sem espaço vazio no card de online). */
-.vitals-grid {
-  align-items: start;
+/* --- Ritmo de seções da home (espaçamento único entre blocos) --- */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* A margem entre seções vem do gap; zera margens ad-hoc que somariam. */
+.home > .hero,
+.home > .rubinot-banner {
+  margin: 0;
+}
+
+.home .section-title {
+  margin-top: 0;
+}
+
+/* --- Card genérico (mesma linguagem do .data-block) --- */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+}
+
+/* --- Card de status unificado (online + mundos num só card) --- */
+.status-card__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .vitals-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--space-3);
-  margin: var(--space-4) 0 0;
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
 }
 
 .vitals-stats dt {
   color: var(--color-text-muted);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -355,6 +386,92 @@ a {
 .vitals-stats__num {
   color: var(--color-accent);
   font-variant-numeric: tabular-nums;
+}
+
+.status-card__worlds-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+}
+
+/* Mundos em grade responsiva dentro do card (usa a largura; sem overflow no mobile). */
+.status-card__worlds .worlds-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 6px;
+}
+
+/* --- Elevação e realce dos cards (dá profundidade e organiza as seções) --- */
+.hero--art,
+.data-block,
+.streamer-card {
+  box-shadow: var(--shadow-card);
+}
+
+.news-item,
+.streamer-card,
+.boosted-card {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.news-item:hover,
+.streamer-card:hover,
+.boosted-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+}
+
+.rubinot-banner {
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.rubinot-banner:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* --- Efeito de entrada das seções (revelação escalonada) --- */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home > * {
+  animation: riseIn 0.5s ease both;
+}
+
+.home > *:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.home > *:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.home > *:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.home > *:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.home > *:nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home > * {
+    animation: none;
+  }
 }
 
 /* --- DataBlock --- */
