@@ -32,14 +32,16 @@ export default async function PowerGamersPage({
   const mode = sp.mode === 'range' ? 'range' : 'day';
   const today = isoOf(new Date());
   const weekAgo = isoOf(new Date(Date.now() - 6 * 86_400_000));
+  // Nunca aceita datas futuras (nem por URL): limita ao dia de hoje.
+  const noFuture = (iso: string) => (iso > today ? today : iso);
 
   let from: string;
   let to: string;
   if (mode === 'day') {
-    from = to = sp.date ?? today;
+    from = to = noFuture(sp.date ?? today);
   } else {
-    from = sp.from ?? weekAgo;
-    to = sp.to ?? today;
+    from = noFuture(sp.from ?? weekAgo);
+    to = noFuture(sp.to ?? today);
   }
 
   const data = toPowerGamersDto(
@@ -79,16 +81,16 @@ export default async function PowerGamersPage({
         <form className="day-form" method="get" role="search">
           <input type="hidden" name="mode" value="day" />
           <label htmlFor="pg-date">Escolha o dia</label>
-          <input id="pg-date" type="date" name="date" defaultValue={data.from} />
+          <input id="pg-date" type="date" name="date" defaultValue={data.from} max={today} />
           <button type="submit">Ver</button>
         </form>
       ) : (
         <form className="day-form" method="get" role="search">
           <input type="hidden" name="mode" value="range" />
           <label htmlFor="pg-from">De</label>
-          <input id="pg-from" type="date" name="from" defaultValue={data.from} />
+          <input id="pg-from" type="date" name="from" defaultValue={data.from} max={today} />
           <label htmlFor="pg-to">até</label>
-          <input id="pg-to" type="date" name="to" defaultValue={data.to} />
+          <input id="pg-to" type="date" name="to" defaultValue={data.to} max={today} />
           <button type="submit">Ver</button>
         </form>
       )}
