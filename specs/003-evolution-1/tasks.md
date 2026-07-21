@@ -87,13 +87,13 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 **Independent Test**: ver boss + criatura do dia (exemplo) na home e/ou página.
 
-- [ ] T027 [P] [US3] E2E bloco de bosses (exemplo) em `tests/e2e/bosses.spec.ts`
-- [ ] T028 [P] [US3] Entidade `BoostedOfDay` em `src/domain/entities/boosted-of-day.ts`
-- [ ] T029 [P] [US3] Port `BossRepository` em `src/domain/ports/boss-repository.ts`
-- [ ] T030 [US3] `MockBossRepository` (origin='exemplo') em `src/infrastructure/mock/mock-boss-repository.ts`
-- [ ] T031 [US3] Caso de uso `GetBoostedOfDay` em `src/application/use-cases/get-boosted-of-day.ts`
-- [ ] T032 [US3] Route Handler `GET /api/bosses` em `src/app/api/bosses/route.ts`
-- [ ] T033 [US3] Componente/bloco de bosses (home) + página `src/app/bosses/page.tsx`
+- [X] T027 [P] [US3] E2E bloco de bosses (exemplo) em `tests/e2e/bosses.spec.ts`
+- [X] T028 [P] [US3] Entidade `BoostedOfDay` em `src/domain/entities/boosted-of-day.ts`
+- [X] T029 [P] [US3] Port `BossRepository` em `src/domain/ports/boss-repository.ts`
+- [X] T030 [US3] `MockBossRepository` (origin='exemplo') em `src/infrastructure/mock/mock-boss-repository.ts`
+- [X] T031 [US3] Caso de uso `GetBoostedOfDay` em `src/application/use-cases/get-boosted-of-day.ts`
+- [X] T032 [US3] Route Handler `GET /api/bosses` em `src/app/api/bosses/route.ts`
+- [X] T033 [US3] Componente/bloco de bosses (home) + página `src/app/bosses/page.tsx`
 
 ---
 
@@ -101,13 +101,13 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 **Independent Test**: ver contagem/lista de guilds; abrir uma guild (exemplo).
 
-- [ ] T034 [P] [US4] E2E guilds (lista + detalhe) em `tests/e2e/guilds.spec.ts`
-- [ ] T035 [P] [US4] Entidade `Guild` em `src/domain/entities/guild.ts`
-- [ ] T036 [P] [US4] Port `GuildsRepository` em `src/domain/ports/guilds-repository.ts`
-- [ ] T037 [US4] `MockGuildsRepository` em `src/infrastructure/mock/mock-guilds-repository.ts`
-- [ ] T038 [US4] Caso de uso `GetGuilds` (+ detalhe) em `src/application/use-cases/get-guilds.ts`
-- [ ] T039 [US4] Route Handlers `GET /api/guilds` e `GET /api/guilds/[name]` em `src/app/api/guilds/`
-- [ ] T040 [US4] Páginas `/guilds` (lista) e `/guilds/[name]` (detalhe) em `src/app/guilds/`
+- [X] T034 [P] [US4] E2E guilds (lista + detalhe) em `tests/e2e/guilds.spec.ts`
+- [X] T035 [P] [US4] Entidade `Guild` em `src/domain/entities/guild.ts`
+- [X] T036 [P] [US4] Port `GuildsRepository` em `src/domain/ports/guilds-repository.ts`
+- [X] T037 [US4] `MockGuildsRepository` em `src/infrastructure/mock/mock-guilds-repository.ts`
+- [X] T038 [US4] Caso de uso `GetGuilds` (+ detalhe) em `src/application/use-cases/get-guilds.ts`
+- [X] T039 [US4] Route Handlers `GET /api/guilds` e `GET /api/guilds/[name]` em `src/app/api/guilds/`
+- [X] T040 [US4] Páginas `/guilds` (lista) e `/guilds/[name]` (detalhe) em `src/app/guilds/`
 
 ---
 
@@ -115,12 +115,12 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 **Independent Test**: ver publicações recentes (exemplo) com título/data e link.
 
-- [ ] T041 [P] [US5] E2E news em `tests/e2e/news.spec.ts`
-- [ ] T042 [P] [US5] Entidade `NewsItem` em `src/domain/entities/news-item.ts`
-- [ ] T043 [P] [US5] Port `NewsRepository` em `src/domain/ports/news-repository.ts`
-- [ ] T044 [US5] `MockNewsRepository` em `src/infrastructure/mock/mock-news-repository.ts`
-- [ ] T045 [US5] Caso de uso `GetNews` em `src/application/use-cases/get-news.ts`
-- [ ] T046 [US5] Route Handler `GET /api/news` + página `src/app/news/page.tsx`
+- [X] T041 [P] [US5] E2E news em `tests/e2e/news.spec.ts`
+- [X] T042 [P] [US5] Entidade `NewsItem` em `src/domain/entities/news-item.ts`
+- [X] T043 [P] [US5] Port `NewsRepository` em `src/domain/ports/news-repository.ts`
+- [X] T044 [US5] `MockNewsRepository` em `src/infrastructure/mock/mock-news-repository.ts`
+- [X] T045 [US5] Caso de uso `GetNews` em `src/application/use-cases/get-news.ts`
+- [X] T046 [US5] Route Handler `GET /api/news` + página `src/app/news/page.tsx`
 
 ---
 
