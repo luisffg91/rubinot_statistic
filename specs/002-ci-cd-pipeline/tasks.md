@@ -56,7 +56,7 @@ description: "Task list para CI/CD Pipeline — Rubibot Statistics"
 
 ### Implementation for User Story 2
 
-- [ ] T010 🧑 [US2] **M1 — Passo manual**: conectar o repositório `luisffg91/rubinot_statistic` ao Vercel (importar projeto, framework Next.js) — ver `contracts/manual-setup.md`
+- [X] T010 🧑 [US2] **M1 — Passo manual**: conectar o repositório `luisffg91/rubinot_statistic` ao Vercel — ✅ CONCLUÍDO (produção no ar: https://rubinot-statistic.vercel.app/)
 - [ ] T011 [US2] (Opcional) Adicionar `vercel.json` apenas se algum override for necessário; caso contrário, confiar nos defaults do Vercel para Next.js (Princípio VI — não criar se não precisar)
 
 **Checkpoint**: entrega→publicação fechada (preview + produção automáticos).

@@ -6,7 +6,7 @@
 
 **Status**: Draft
 
-**Input**: User description: "MVP do Rubibot Statistics — Página inicial (home) com total de jogadores online (auto-refresh), mundos online e busca por personagem. Referência: guildstats.eu / guild-stats-page.png. Fontes de dados do Rubinot rastreadas em docs/data-sources.md."
+**Input**: User description: "MVP do Rubibot Statistics — Página inicial (home) com total de jogadores online (auto-refresh), mundos online e busca por personagem. Referência: guildstats.eu / docs/references/guild-stats-page.png. Fontes de dados do Rubinot rastreadas em docs/data-sources.md."
 
 ## Clarifications
 
@@ -16,8 +16,8 @@
 - Q: Profundidade da busca de personagem no MVP? → A: Apenas os dados principais (nível, vocação, mundo, guild, status online/offline); perfil histórico completo fica para evolução futura.
 - Q: News entra no MVP? → A: Não. Movida para a Evolução 1.
 - Q: Guilds entra no MVP ou na Evolução 1? → A: Movida para a Evolução 1. O MVP contém apenas vitais do servidor (online + mundos) e busca de personagem.
-- Q: Quais são as referências visuais do produto? → A: `rubinot-home-page.png` = home real do Rubinot (fonte da verdade dos dados/elementos do servidor: mostra "13658 Online" no topo e um bloco BOOSTED de boss/criatura do dia — este último é Evolução 1); `guild-stats-page.png` = inspiração de layout/UX (hero com busca + tiles de estatística + News).
-- Q: O arquivo `character-details.png` serve de referência para a visão de personagem (US2)? → A: **Não** — o arquivo entregue é idêntico (mesmo SHA-256) ao `guild-stats-page.png` (home do GuildStats), não a uma página de detalhes de personagem. Re-checado em 2026-07-20: arquivo permanece inalterado. A referência visual da US2 fica **pendente** de um novo print correto.
+- Q: Quais são as referências visuais do produto? → A: `docs/references/rubinot-home-page.png` = home real do Rubinot (fonte da verdade dos dados/elementos do servidor: mostra "13658 Online" no topo e um bloco BOOSTED de boss/criatura do dia — este último é Evolução 1); `docs/references/guild-stats-page.png` = inspiração de layout/UX (hero com busca + tiles de estatística + News).
+- Q: O arquivo `docs/references/character-details.png` serve de referência para a visão de personagem (US2)? → A: **Não** — o arquivo entregue é idêntico (mesmo SHA-256) ao `docs/references/guild-stats-page.png` (home do GuildStats), não a uma página de detalhes de personagem. Re-checado em 2026-07-20: arquivo permanece inalterado. A referência visual da US2 fica **pendente** de um novo print correto.
 - Q: Diretriz de identidade visual? → A: Manter **proximidade** com a linguagem visual e a paleta do Rubinot (os usuários já estão acostumados com aquele layout), porém **sem ser cópia idêntica** de cores/estilos — usar uma paleta própria, familiar mas diferenciada.
 
 ## User Scenarios & Testing *(mandatory)*
@@ -115,8 +115,8 @@ hunt finder (Evolução 2).
 ## Assumptions
 
 - **Escopo do MVP**: SOMENTE a página inicial com (a) vitais do servidor (total online + mundos) e (b) busca de personagem. Guilds, News, ranking, bosses e hunt finder estão fora do MVP.
-- **Evolução 1 (próxima)**: guilds, News (fonte = endpoint oficial do Rubinot, já decidida), ranking/top de experiência e bosses boostados (o print `rubinot-home-page.png` confirma um bloco "BOOSTED" com boss + criatura do dia). **Evolução 2**: hunt finder.
-- **Referências visuais**: `rubinot-home-page.png` (home real do Rubinot — dados do servidor) e `guild-stats-page.png` (layout/UX de inspiração). ⚠️ **Pendência**: a referência visual da visão de personagem (US2) não foi fornecida — `character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256 em 2026-07-20). Necessário novo print para detalhar a UI da US2.
+- **Evolução 1 (próxima)**: guilds, News (fonte = endpoint oficial do Rubinot, já decidida), ranking/top de experiência e bosses boostados (o print `docs/references/rubinot-home-page.png` confirma um bloco "BOOSTED" com boss + criatura do dia). **Evolução 2**: hunt finder.
+- **Referências visuais**: `docs/references/rubinot-home-page.png` (home real do Rubinot — dados do servidor) e `docs/references/guild-stats-page.png` (layout/UX de inspiração). ⚠️ **Pendência**: a referência visual da visão de personagem (US2) não foi fornecida — `docs/references/character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256 em 2026-07-20). Necessário novo print para detalhar a UI da US2.
 - **Identidade visual**: aproximar-se da paleta/linguagem do Rubinot (familiaridade do usuário) sem ser cópia idêntica — paleta própria e diferenciada. O MVP deve definir um pequeno conjunto de tokens de cor/estilo próprios, inspirados (não copiados) no Rubinot.
 - **Derivação do total online**: o total de jogadores online é calculado somando `playersOnline` de todos os mundos retornados pela fonte (regra de domínio centralizada).
 - **Busca de personagem**: leva a uma visão com os dados principais do personagem (não a um perfil histórico completo, que fica para evolução futura).

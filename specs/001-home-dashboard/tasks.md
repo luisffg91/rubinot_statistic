@@ -107,7 +107,7 @@ description: "Task list para Home Dashboard — Rubibot Statistics (MVP)"
 - [ ] T043 [US2] Route Handler BFF `GET /api/character?name=` em `src/app/api/character/route.ts` (contrato internal-bff.md; 200 found/not-found, 400 inválido, 503 indisponível)
 - [ ] T044 [US2] Componente `CharacterSearch` (client) na home em `src/app/components/character-search.tsx` (validação FR-008, submit)
 - [ ] T045 [US2] Visão do personagem em `src/app/character/[name]/page.tsx` (dados principais; status omitido enquanto C2 pendente)
-- [ ] T046 [US2] ⚠️ DEPENDE DE PRINT — estilização fina da visão de personagem conforme referência visual correta. `character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256). Aguardar print correto para finalizar layout; manter identidade visual própria (T010)
+- [ ] T046 [US2] ⚠️ DEPENDE DE PRINT — estilização fina da visão de personagem conforme referência visual correta. `docs/references/character-details.png` está incorreto (duplicata do GuildStats, confirmado por SHA-256). Aguardar print correto para finalizar layout; manter identidade visual própria (T010)
 
 **Checkpoint**: US1 + US2 funcionam independentemente (US2 degrada graciosamente enquanto C1/C2 pendentes).
 
@@ -154,4 +154,4 @@ description: "Task list para Home Dashboard — Rubibot Statistics (MVP)"
 
 - **C1**: endpoint/método exatos de personagem → bloqueia T042.
 - **C2**: campo de status online/offline do personagem → mantém `Character.status` opcional.
-- **Print de personagem**: `character-details.png` incorreto → bloqueia T046 (estilização fina da US2).
+- **Print de personagem**: `docs/references/character-details.png` incorreto → bloqueia T046 (estilização fina da US2).

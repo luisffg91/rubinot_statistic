@@ -4,6 +4,8 @@ Plataforma didática de **dados e estatísticas do servidor Rubinot** (servidor 
 inspirada no fansite [GuildStats](https://guildstats.eu/). O objetivo é demonstrar, de forma clara, como
 bons dados ajudam os jogadores.
 
+🔗 **Produção**: https://rubinot-statistic.vercel.app/
+
 > Desenvolvido com [Spec Kit](https://github.com/github/spec-kit). A especificação de cada fase vive em
 > `specs/`; os princípios do projeto em `.specify/memory/constitution.md`.
 
@@ -84,5 +86,6 @@ Todas as fontes externas são rastreadas em [`docs/data-sources.md`](docs/data-s
 
 ## Documentação para contribuir
 
-Veja [`CLAUDE.md`](CLAUDE.md) para orientações de desenvolvimento com Claude Code (comandos, convenções e
-estrutura). O fluxo de evolução segue o Spec Kit: `constitution → specify → clarify → plan → tasks → implement`.
+Veja [`CONTRIBUTING.md`](CONTRIBUTING.md) para as convenções (Conventional Commits, nomes de branch, fluxo de
+PR) e [`CLAUDE.md`](CLAUDE.md) para orientações de desenvolvimento com Claude Code (comandos, camadas). O fluxo
+de evolução segue o Spec Kit: `constitution → specify → clarify → plan → tasks → implement`.
