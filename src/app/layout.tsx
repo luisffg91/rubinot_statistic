@@ -47,6 +47,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   <li>
                     <Link href="/">Início</Link>
                   </li>
+                  <li>
+                    <Link href="/contato">Contato</Link>
+                  </li>
                 </ul>
               </nav>
               <nav className="site-footer__col" aria-label="Rubinot">
