@@ -3,11 +3,13 @@ import type { PowerGamersRepository } from '@/domain/ports/power-gamers-reposito
 import type { BossRepository } from '@/domain/ports/boss-repository';
 import type { GuildsRepository } from '@/domain/ports/guilds-repository';
 import type { NewsRepository } from '@/domain/ports/news-repository';
+import type { SponsoredStreamersRepository } from '@/domain/ports/sponsored-streamers-repository';
 import { MockRankingRepository } from '@/infrastructure/mock/mock-ranking-repository';
 import { MockPowerGamersRepository } from '@/infrastructure/mock/mock-power-gamers-repository';
 import { MockBossRepository } from '@/infrastructure/mock/mock-boss-repository';
 import { MockGuildsRepository } from '@/infrastructure/mock/mock-guilds-repository';
 import { MockNewsRepository } from '@/infrastructure/mock/mock-news-repository';
+import { MockSponsoredStreamersRepository } from '@/infrastructure/mock/mock-sponsored-streamers-repository';
 
 /**
  * Fábricas de repositórios por capacidade. Onda 1: sempre o adapter MOCK (demo).
@@ -34,4 +36,9 @@ export function getGuildsRepository(): GuildsRepository {
 
 export function getNewsRepository(): NewsRepository {
   return new MockNewsRepository();
+}
+
+export function getSponsoredStreamersRepository(): SponsoredStreamersRepository {
+  // Onda 2: lista curada + Twitch Helix (S2) para status ao vivo; YouTube Data API (S3) opcional.
+  return new MockSponsoredStreamersRepository();
 }

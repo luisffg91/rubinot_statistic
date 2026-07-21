@@ -128,14 +128,14 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 **Independent Test**: ver streamers "ao vivo" (exemplos fictícios) em destaque + canais de YouTube (exemplo).
 
-- [ ] T047 [P] [US6] E2E streamers (ao vivo em destaque + canais) em `tests/e2e/streamers.spec.ts`
-- [ ] T048 [P] [US6] Entidades `SponsoredStreamer` e `SponsoredChannel` em `src/domain/entities/sponsored.ts`
-- [ ] T049 [P] [US6] Port `SponsoredStreamersRepository` em `src/domain/ports/sponsored-streamers-repository.ts`
-- [ ] T050 [US6] `MockSponsoredStreamersRepository` (streamers/canais FICTÍCIOS rotulados) em `src/infrastructure/mock/mock-sponsored-streamers-repository.ts`
-- [ ] T051 [US6] Serviço de ordenação (ao vivo primeiro) em `src/domain/services/sort-streamers.ts`
-- [ ] T052 [US6] Caso de uso `GetSponsoredStreamers` em `src/application/use-cases/get-sponsored-streamers.ts`
-- [ ] T053 [US6] Route Handler `GET /api/streamers` em `src/app/api/streamers/route.ts`
-- [ ] T054 [US6] Página `/streamers` + `StreamerCard` em `src/app/streamers/`
+- [X] T047 [P] [US6] E2E streamers (ao vivo em destaque + canais) em `tests/e2e/streamers.spec.ts`
+- [X] T048 [P] [US6] Entidades `SponsoredStreamer` e `SponsoredChannel` em `src/domain/entities/sponsored.ts`
+- [X] T049 [P] [US6] Port `SponsoredStreamersRepository` em `src/domain/ports/sponsored-streamers-repository.ts`
+- [X] T050 [US6] `MockSponsoredStreamersRepository` (streamers/canais FICTÍCIOS rotulados) em `src/infrastructure/mock/mock-sponsored-streamers-repository.ts`
+- [X] T051 [US6] Serviço de ordenação (ao vivo primeiro) em `src/domain/services/sort-streamers.ts`
+- [X] T052 [US6] Caso de uso `GetSponsoredStreamers` em `src/application/use-cases/get-sponsored-streamers.ts`
+- [X] T053 [US6] Route Handler `GET /api/streamers` em `src/app/api/streamers/route.ts`
+- [X] T054 [US6] Página `/streamers` + `StreamerCard` em `src/app/streamers/`
 
 ---
 
