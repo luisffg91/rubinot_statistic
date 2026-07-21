@@ -41,11 +41,31 @@ a {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 
 .site-header__brand {
   display: inline-flex;
   text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.site-nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
 }
 
 /* --- Logo --- */
@@ -497,6 +517,98 @@ a {
 .contact-form__error {
   color: var(--color-danger);
   margin: 0;
+}
+
+/* --- Selo de dados de exemplo --- */
+.demo-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-warn);
+  color: var(--color-warn);
+  vertical-align: middle;
+}
+
+/* --- Filtro de mundo --- */
+.world-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.world-filter a {
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.world-filter a.is-active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* --- Tabela de ranking --- */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.ranking-table th,
+.ranking-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.ranking-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ranking-table__rank {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ranking-table__world {
+  color: var(--color-text-muted);
+}
+
+.ranking-table__exp {
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+
+.exp-bar {
+  display: block;
+  margin-top: 3px;
+  height: 4px;
+  background: var(--color-surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.exp-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+}
+
+.sparkline {
+  display: block;
 }
 
 /* --- Responsivo: telas estreitas (mobile) --- */
