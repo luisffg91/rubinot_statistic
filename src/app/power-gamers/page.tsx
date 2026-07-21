@@ -5,19 +5,17 @@ import { getPowerGamersRepository } from '@/infrastructure/config/repositories';
 import { toPowerGamersDto } from '@/app/_lib/power-gamers-dto';
 import { PowerGamersTable } from '@/app/components/power-gamers-table';
 import { DemoBadge } from '@/app/components/demo-badge';
-import type { GainPeriod } from '@/domain/entities/experience-gain';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Power Gamers' };
 
-const PERIODS: { key: GainPeriod; label: string }[] = [
+const MODES = [
   { key: 'day', label: 'Dia' },
-  { key: 'week', label: 'Semana' },
-  { key: 'month', label: 'Mês' },
+  { key: 'range', label: 'Período' },
 ];
 
-function parsePeriod(value?: string): GainPeriod {
-  return value === 'week' || value === 'month' ? value : 'day';
+function isoOf(d: Date): string {
+  return d.toISOString().slice(0, 10);
 }
 
 function formatDay(iso: string): string {
@@ -28,21 +26,34 @@ function formatDay(iso: string): string {
 export default async function PowerGamersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ period?: string; date?: string }>;
+  searchParams: Promise<{ mode?: string; date?: string; from?: string; to?: string }>;
 }) {
   const sp = await searchParams;
-  const period = parsePeriod(sp.period);
-  const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period, undefined, sp.date);
-  const data = toPowerGamersDto(pg);
+  const mode = sp.mode === 'range' ? 'range' : 'day';
+  const today = isoOf(new Date());
+  const weekAgo = isoOf(new Date(Date.now() - 6 * 86_400_000));
+
+  let from: string;
+  let to: string;
+  if (mode === 'day') {
+    from = to = sp.date ?? today;
+  } else {
+    from = sp.from ?? weekAgo;
+    to = sp.to ?? today;
+  }
+
+  const data = toPowerGamersDto(
+    await new GetPowerGamers(getPowerGamersRepository()).execute(from, to),
+  );
 
   return (
     <main className="container">
       <header className="hero">
         <h1>Power Gamers</h1>
         <p>
-          {period === 'day' && data.day
-            ? `Experiência ganha no dia ${formatDay(data.day)}.`
-            : 'Quem mais ganhou experiência no período.'}
+          {mode === 'day'
+            ? `Experiência ganha no dia ${formatDay(data.from)}.`
+            : `Experiência ganha de ${formatDay(data.from)} a ${formatDay(data.to)}.`}
           {data.origin === 'exemplo' && (
             <>
               {' '}
@@ -52,23 +63,32 @@ export default async function PowerGamersPage({
         </p>
       </header>
 
-      <nav className="world-filter" aria-label="Período">
-        {PERIODS.map((x) => (
+      <nav className="world-filter" aria-label="Filtro">
+        {MODES.map((m) => (
           <Link
-            key={x.key}
-            href={`/power-gamers?period=${x.key}`}
-            className={data.period === x.key ? 'is-active' : ''}
+            key={m.key}
+            href={`/power-gamers?mode=${m.key}`}
+            className={mode === m.key ? 'is-active' : ''}
           >
-            {x.label}
+            {m.label}
           </Link>
         ))}
       </nav>
 
-      {period === 'day' && (
+      {mode === 'day' ? (
         <form className="day-form" method="get" role="search">
-          <input type="hidden" name="period" value="day" />
+          <input type="hidden" name="mode" value="day" />
           <label htmlFor="pg-date">Escolha o dia</label>
-          <input id="pg-date" type="date" name="date" defaultValue={data.day ?? undefined} />
+          <input id="pg-date" type="date" name="date" defaultValue={data.from} />
+          <button type="submit">Ver</button>
+        </form>
+      ) : (
+        <form className="day-form" method="get" role="search">
+          <input type="hidden" name="mode" value="range" />
+          <label htmlFor="pg-from">De</label>
+          <input id="pg-from" type="date" name="from" defaultValue={data.from} />
+          <label htmlFor="pg-to">até</label>
+          <input id="pg-to" type="date" name="to" defaultValue={data.to} />
           <button type="submit">Ver</button>
         </form>
       )}
@@ -76,7 +96,7 @@ export default async function PowerGamersPage({
       <div className="data-block table-scroll">
         {data.collecting ? (
           <p className="data-block__unavailable" data-testid="collecting">
-            Coletando dados para este período… volte em breve.
+            Coletando dados para este intervalo… volte em breve.
           </p>
         ) : (
           <PowerGamersTable entries={data.entries} />

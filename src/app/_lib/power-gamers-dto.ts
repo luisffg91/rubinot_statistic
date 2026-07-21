@@ -1,5 +1,4 @@
 import type { PowerGamers } from '@/application/use-cases/get-power-gamers';
-import type { GainPeriod } from '@/domain/entities/experience-gain';
 import type { DataOrigin } from '@/domain/shared/data-origin';
 
 export interface PowerGamerDto {
@@ -14,8 +13,8 @@ export interface PowerGamersDto {
   entries: PowerGamerDto[];
   worlds: string[];
   world: string | null;
-  period: GainPeriod;
-  day: string | null;
+  from: string;
+  to: string;
   origin: DataOrigin;
   fetchedAt: string;
   collecting: boolean;
@@ -32,8 +31,8 @@ export function toPowerGamersDto(pg: PowerGamers): PowerGamersDto {
     })),
     worlds: pg.worlds,
     world: pg.world,
-    period: pg.period,
-    day: pg.day,
+    from: pg.from,
+    to: pg.to,
     origin: pg.origin,
     fetchedAt: pg.fetchedAt.toISOString(),
     collecting: pg.collecting,

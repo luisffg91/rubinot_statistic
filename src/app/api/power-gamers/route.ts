@@ -2,24 +2,25 @@ import { NextResponse } from 'next/server';
 import { GetPowerGamers } from '@/application/use-cases/get-power-gamers';
 import { getPowerGamersRepository } from '@/infrastructure/config/repositories';
 import { toPowerGamersDto } from '@/app/_lib/power-gamers-dto';
-import type { GainPeriod } from '@/domain/entities/experience-gain';
 
 export const dynamic = 'force-dynamic';
 
-const PERIODS: GainPeriod[] = ['day', 'week', 'month'];
-
-function parsePeriod(value: string | null): GainPeriod {
-  return PERIODS.includes(value as GainPeriod) ? (value as GainPeriod) : 'day';
-}
-
-/** GET /api/power-gamers?period=&world= — ranking de ganho por período (BFF). */
+/** GET /api/power-gamers?from=&to=&world= (ou ?day= para um único dia). */
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const period = parsePeriod(url.searchParams.get('period'));
+  const today = new Date().toISOString().slice(0, 10);
+  const day = url.searchParams.get('day');
+  let from = url.searchParams.get('from') ?? undefined;
+  let to = url.searchParams.get('to') ?? undefined;
+  if (day) {
+    from = day;
+    to = day;
+  }
+  from = from ?? today;
+  to = to ?? from;
   const world = url.searchParams.get('world') || undefined;
-  const day = url.searchParams.get('date') || undefined;
   try {
-    const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(period, world, day);
+    const pg = await new GetPowerGamers(getPowerGamersRepository()).execute(from, to, world);
     return NextResponse.json(toPowerGamersDto(pg));
   } catch {
     return NextResponse.json({ error: 'unavailable' }, { status: 503 });
