@@ -38,16 +38,18 @@ Não usa segredos: o deploy é responsabilidade do Vercel.
 O deploy é feito pela **integração Git do Vercel** (não pelo Actions): preview a cada PR, produção a cada
 merge na main. Sem tokens no GitHub.
 
+## Produção
+
+🔗 https://rubinot-statistic.vercel.app/ (atualiza automaticamente ao mergear na `main`).
+
 ## Passos manuais (uma vez)
 
-> Não automatizáveis nesta máquina (sem `gh` CLI). Detalhes em
-> `specs/002-ci-cd-pipeline/contracts/manual-setup.md`.
+> Detalhes em `specs/002-ci-cd-pipeline/contracts/manual-setup.md`.
 
-### M1 — Conectar o Vercel
+### M1 — Conectar o Vercel ✅ concluído
 
-1. https://vercel.com → **Add New… → Project** → importar `luisffg91/rubinot_statistic`.
-2. Framework: **Next.js** (defaults). Confirmar.
-3. Resultado: preview por PR + produção ao merge na main.
+O repositório já está conectado ao Vercel (produção no ar na URL acima). Preview por PR e produção ao merge
+na `main` estão ativos.
 
 ### M2 — Proteção de branch (main)
 

@@ -84,7 +84,7 @@ src/
 
 - **C1**: path/método exatos do endpoint de personagem → bloqueia `RubinotCharacterClient` (US2).
 - **C2**: campo de status online/offline do personagem (ausente no exemplo) → `Character.status` fica opcional.
-- **Print**: `character-details.png` está incorreto (duplicata do GuildStats) → bloqueia a estilização fina
+- **Print**: `docs/references/character-details.png` está incorreto (duplicata do GuildStats) → bloqueia a estilização fina
   da visão de personagem.
 
 ## CI/CD e fluxo de branches
@@ -94,6 +94,16 @@ src/
 - **Disciplina**: trabalho em **feature branches** → PR → **CI verde** → merge na main. Não commitar direto
   na main (exceto o bootstrap inicial, já feito). Ver `docs/ci-cd.md`.
 - Antes de abrir PR, rode localmente: `npm run lint && npm run test:unit && npm run build && npm run test:e2e`.
+- **Produção**: https://rubinot-statistic.vercel.app/ (Vercel, atualiza ao mergear na main).
+
+## Convenções de commit e branch (OBRIGATÓRIO)
+
+- **Commits seguem [Conventional Commits](https://www.conventionalcommits.org/)**: `<tipo>[escopo]: descrição`
+  no imperativo. Tipos: `feat`, `fix`, `docs`, `test`, `refactor`, `perf`, `style`, `build`, `ci`, `chore`, `revert`.
+  Ex.: `feat(character): adiciona busca de personagem`.
+- **Branches**: `<tipo>/<descrição-kebab>` (ou `<tipo>/<NNN>-<slug>` para features do Spec Kit).
+  Ex.: `feat/003-character-search`, `docs/repo-organization`.
+- Detalhes e exemplos em **`CONTRIBUTING.md`**.
 
 ## Fluxo Spec Kit
 
