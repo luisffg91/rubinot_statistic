@@ -9,7 +9,11 @@ describe('TibiaBossRepository', () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new Error('offline'))));
     const repo = new TibiaBossRepository(new MockBossRepository());
     const r = await repo.fetchBoosted();
-    expect(r.boosted.boss.name).toBe('Guardião das Brumas'); // valor do mock
+    // Delega ao mock (dados de exemplo com nome e sprite), sem depender do valor rotativo.
+    expect(r.origin).toBe('exemplo');
+    expect(r.boosted.boss.name).toBeTruthy();
+    expect(r.boosted.boss.imageUrl).toContain('.gif');
+    expect(r.boosted.creature.imageUrl).toContain('.gif');
   });
 
   it('usa os dados do TibiaData quando disponível', async () => {

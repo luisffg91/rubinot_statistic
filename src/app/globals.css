@@ -306,6 +306,18 @@ a {
   color: var(--color-text-muted);
 }
 
+/* Dica de teste no hero (aponta o personagem de exemplo). */
+.hero__hint {
+  margin: var(--space-2) 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.hero__hint a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 /* Hero com a arte do Rubinot ao fundo (escurecida para legibilidade) */
 .hero--art {
   position: relative;
@@ -1149,8 +1161,25 @@ a {
   padding: 6px 10px;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-surface-2);
   color: var(--color-text);
+  font: inherit;
+  /* Faz o calendário nativo (popup, spinners e ícone) renderizar em modo escuro. */
+  color-scheme: dark;
+}
+
+.day-form input[type='date']:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.day-form input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.day-form input[type='date']::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 .day-form button {

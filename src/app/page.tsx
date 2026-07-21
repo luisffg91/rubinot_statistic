@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { GetServerSnapshot } from '@/application/use-cases/get-server-snapshot';
 import { GetBoostedOfDay } from '@/application/use-cases/get-boosted-of-day';
 import { GetSponsoredStreamers } from '@/application/use-cases/get-sponsored-streamers';
@@ -72,6 +73,10 @@ export default async function HomePage() {
         <h1>As estatísticas do Rubinot</h1>
         <p>O pulso do servidor em tempo real — de forma didática.</p>
         <CharacterSearch />
+        <p className="hero__hint">
+          Para teste, busque pelo personagem{' '}
+          <Link href="/character/Dejairzin">Dejairzin</Link>.
+        </p>
       </header>
 
       {news.length > 0 && (
