@@ -33,7 +33,42 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <footer className="site-footer">
           <div className="site-footer__inner">
-            Rubinot Statistics — fansite não-oficial de estatísticas do Rubinot.
+            <div className="site-footer__cols">
+              <div className="site-footer__col site-footer__col--brand">
+                <Logo />
+                <p className="site-footer__about">
+                  Estatísticas do servidor Rubinot, de forma didática. Fansite não-oficial, feito por
+                  fãs — sem vínculo com a equipe do Rubinot.
+                </p>
+              </div>
+              <nav className="site-footer__col" aria-label="Navegação">
+                <h3>Navegação</h3>
+                <ul>
+                  <li>
+                    <Link href="/">Início</Link>
+                  </li>
+                </ul>
+              </nav>
+              <nav className="site-footer__col" aria-label="Rubinot">
+                <h3>Rubinot</h3>
+                <ul>
+                  <li>
+                    <a href="https://rubinot.com.br" target="_blank" rel="noopener noreferrer">
+                      Site oficial
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://rubinot.com.br/news" target="_blank" rel="noopener noreferrer">
+                      Notícias
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div className="site-footer__bar">
+              <span>© {new Date().getFullYear()} Rubinot Statistics</span>
+              <span>Feito com Next.js · dados via API do Rubinot</span>
+            </div>
           </div>
         </footer>
       </body>
