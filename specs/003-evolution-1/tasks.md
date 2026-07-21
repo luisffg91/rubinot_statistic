@@ -65,19 +65,19 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 ### Tests (US2)
 
-- [ ] T017 [P] [US2] Teste unitário `computeExperienceGain` (RG-E2: delta; negativos→0) em `tests/unit/domain/compute-experience-gain.test.ts`
-- [ ] T018 [P] [US2] Teste unitário do gerador de power gamers de exemplo (por período, spark) em `tests/unit/mock/power-gamers-mock.test.ts`
-- [ ] T019 [P] [US2] E2E Power Gamers (seletor de período dia/semana/mês) em `tests/e2e/power-gamers.spec.ts`
+- [X] T017 [P] [US2] Teste unitário `computeExperienceGain` (RG-E2: delta; negativos→0) em `tests/unit/domain/compute-experience-gain.test.ts`
+- [X] T018 [P] [US2] Teste unitário do gerador de power gamers de exemplo (por período, spark) em `tests/unit/mock/power-gamers-mock.test.ts`
+- [X] T019 [P] [US2] E2E Power Gamers (seletor de período dia/semana/mês) em `tests/e2e/power-gamers.spec.ts`
 
 ### Implementation (US2)
 
-- [ ] T020 [P] [US2] Entidade `ExperienceGain` em `src/domain/entities/experience-gain.ts`
-- [ ] T021 [P] [US2] Port `PowerGamersRepository` em `src/domain/ports/power-gamers-repository.ts`
-- [ ] T022 [US2] Serviço `computeExperienceGain` (RG-E2) em `src/domain/services/compute-experience-gain.ts`
-- [ ] T023 [US2] `MockPowerGamersRepository` (deltas + spark de exemplo) em `src/infrastructure/mock/mock-power-gamers-repository.ts`
-- [ ] T024 [US2] Caso de uso `GetPowerGamers` (por período) em `src/application/use-cases/get-power-gamers.ts`
-- [ ] T025 [US2] Route Handler `GET /api/power-gamers?period=` em `src/app/api/power-gamers/route.ts`
-- [ ] T026 [US2] UI de Power Gamers (aba/página) com `PeriodSelector` + `Sparkline` em `src/app/ranking/` (ou `src/app/power-gamers/page.tsx`)
+- [X] T020 [P] [US2] Entidade `ExperienceGain` em `src/domain/entities/experience-gain.ts`
+- [X] T021 [P] [US2] Port `PowerGamersRepository` em `src/domain/ports/power-gamers-repository.ts`
+- [X] T022 [US2] Serviço `computeExperienceGain` (RG-E2) em `src/domain/services/compute-experience-gain.ts`
+- [X] T023 [US2] `MockPowerGamersRepository` (deltas + spark de exemplo) em `src/infrastructure/mock/mock-power-gamers-repository.ts`
+- [X] T024 [US2] Caso de uso `GetPowerGamers` (por período) em `src/application/use-cases/get-power-gamers.ts`
+- [X] T025 [US2] Route Handler `GET /api/power-gamers?period=` em `src/app/api/power-gamers/route.ts`
+- [X] T026 [US2] UI de Power Gamers (aba/página) com `PeriodSelector` + `Sparkline` em `src/app/ranking/` (ou `src/app/power-gamers/page.tsx`)
 
 **Checkpoint**: US2 navegável em modo demo (deltas de exemplo).
 
