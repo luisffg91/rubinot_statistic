@@ -123,7 +123,7 @@ Documentação acompanha o código e as fontes de dados são explícitas.
   - Bosses boostados do dia — origem a confirmar.
   - Notícias/News — origem: https://rubinot.com.br/news (a confirmar formato: API vs. scraping).
 - **Contratos**: toda integração externa MUST ser acessada por uma interface/adaptador na infraestrutura; o domínio nunca chama HTTP diretamente.
-- **Referência de produto**: `guild-stats-page.png` e https://guildstats.eu/ servem de referência visual/funcional, não de vínculo técnico.
+- **Referência de produto**: `docs/references/guild-stats-page.png` e https://guildstats.eu/ servem de referência visual/funcional, não de vínculo técnico.
 
 ## Fluxo de Desenvolvimento (Spec Kit)
 
