@@ -23,3 +23,6 @@ test-results/
 
 # Outreach local (contatos reais mantidos fora do repositório público)
 *.local.md
+
+# Deck: PDF é gerado localmente a partir de deck/deck.html — não versionar o binário
+docs/outreach/rubinot-statistics-proposta.pdf
