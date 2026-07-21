@@ -59,3 +59,28 @@ test('fonte de personagem indisponível degrada sem quebrar (FR-009)', async ({ 
   await page.goto('/character/Minlek%20Tanker');
   await expect(page.getByTestId('unavailable')).toBeVisible();
 });
+
+// Sem interceptar a rede: o BFF usa o adapter mock (demo) e devolve o personagem de exemplo.
+test('modo demonstração exibe perfil completo com selo de dados de exemplo', async ({ page }) => {
+  await page.goto('/character/Dejairzin');
+
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Dejairzin');
+  await expect(page.getByTestId('demo-badge')).toBeVisible();
+
+  const card = page.getByTestId('character-card');
+  await expect(card).toContainText('Elder Druid');
+  await expect(card).toContainText('Ferobra');
+  await expect(card).toContainText('United');
+  await expect(card).toContainText('Premium Account');
+});
+
+test('aba Experiência mostra o histórico de XP (FR-014, modo demonstração)', async ({ page }) => {
+  await page.goto('/character/Dejairzin');
+
+  await page.getByRole('tab', { name: 'Experiência' }).click();
+
+  const table = page.getByTestId('xp-history');
+  await expect(table).toBeVisible();
+  await expect(table).toContainText('2026-07-03'); // melhor dia registrado
+  await expect(page.getByTestId('character-experience')).toContainText('Melhor dia');
+});

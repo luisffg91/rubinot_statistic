@@ -1,7 +1,10 @@
 import type { CharacterDto } from '@/app/_lib/character-dto';
 
-/** Apresentação dos dados principais do personagem (componente burro). */
+const nf = new Intl.NumberFormat('pt-BR');
+
+/** Grade de dados do personagem (aba Personagem). Componente burro. */
 export function CharacterCard({ character }: { character: CharacterDto }) {
+  const p = character.profile;
   return (
     <dl className="character-card" data-testid="character-card">
       <div>
@@ -25,6 +28,47 @@ export function CharacterCard({ character }: { character: CharacterDto }) {
           <dt>Status</dt>
           <dd>{character.status === 'online' ? 'Online' : 'Offline'}</dd>
         </div>
+      )}
+
+      {p && (
+        <>
+          <div>
+            <dt>Sexo</dt>
+            <dd>{p.sex || '—'}</dd>
+          </div>
+          <div>
+            <dt>Residência</dt>
+            <dd>{p.residence || '—'}</dd>
+          </div>
+          <div>
+            <dt>Nacionalidade</dt>
+            <dd>{p.nationality ?? '—'}</dd>
+          </div>
+          <div>
+            <dt>Último login</dt>
+            <dd>{p.lastLogin || '—'}</dd>
+          </div>
+          <div>
+            <dt>Pontos de Achievements</dt>
+            <dd>{nf.format(p.achievementPoints)}</dd>
+          </div>
+          <div>
+            <dt>Status da conta</dt>
+            <dd>{p.accountStatus || '—'}</dd>
+          </div>
+          <div>
+            <dt>Títulos</dt>
+            <dd>{nf.format(p.titles)}</dd>
+          </div>
+          <div>
+            <dt>Tibian age</dt>
+            <dd>{p.tibianAge || '—'}</dd>
+          </div>
+          <div>
+            <dt>Conta criada em</dt>
+            <dd>{p.accountCreated || '—'}</dd>
+          </div>
+        </>
       )}
     </dl>
   );

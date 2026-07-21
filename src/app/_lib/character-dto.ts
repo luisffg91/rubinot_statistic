@@ -1,4 +1,9 @@
-import type { Character } from '@/domain/entities/character';
+import type {
+  Character,
+  CharacterExperience,
+  CharacterProfile,
+} from '@/domain/entities/character';
+import type { DataOrigin } from '@/domain/shared/data-origin';
 
 /** DTO da fronteira BFF↔UI para personagem (ver contracts/internal-bff.md). */
 export interface CharacterDto {
@@ -8,6 +13,9 @@ export interface CharacterDto {
   world: string;
   guild: string | null;
   status: 'online' | 'offline' | 'unknown';
+  origin?: DataOrigin;
+  profile?: CharacterProfile;
+  experience?: CharacterExperience;
 }
 
 export type CharacterSearchDto =
@@ -24,5 +32,8 @@ export function toCharacterDto(c: Character): CharacterDto {
     world: c.world,
     guild: c.guild,
     status: c.status,
+    origin: c.origin,
+    profile: c.profile,
+    experience: c.experience,
   };
 }

@@ -1,19 +1,15 @@
 import { NextResponse } from 'next/server';
 import { SearchCharacter } from '@/application/use-cases/search-character';
-import {
-  RubinotCharacterClient,
-  CHARACTER_SOURCE,
-} from '@/infrastructure/rubinot/rubinot-character-client';
+import { CHARACTER_SOURCE } from '@/infrastructure/rubinot/rubinot-character-client';
+import { getCharacterRepository } from '@/infrastructure/config/repositories';
 import { toCharacterDto } from '@/app/_lib/character-dto';
 
 export const dynamic = 'force-dynamic';
 
-const useCase = new SearchCharacter(new RubinotCharacterClient());
-
 /** GET /api/character?name= — busca de personagem via BFF (ver contracts/internal-bff.md). */
 export async function GET(request: Request) {
   const name = new URL(request.url).searchParams.get('name') ?? '';
-  const outcome = await useCase.execute(name);
+  const outcome = await new SearchCharacter(getCharacterRepository()).execute(name);
 
   switch (outcome.kind) {
     case 'ok':
