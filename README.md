@@ -1,4 +1,7 @@
-# Rubibot Statistics
+# Rubinot Statistics
+
+<!-- Marca exibida: "Rubinot Statistics". Nome interno do pacote npm: rubibot-statistics. -->
+
 
 Plataforma didática de **dados e estatísticas do servidor Rubinot** (servidor alternativo de Tibia),
 inspirada no fansite [GuildStats](https://guildstats.eu/). O objetivo é demonstrar, de forma clara, como
@@ -80,9 +83,9 @@ Todas as fontes externas são rastreadas em [`docs/data-sources.md`](docs/data-s
 
 ## Estado atual
 
-- **US1 (vitais do servidor)**: implementada e testada (unit + E2E). É o MVP entregável.
-- **US2 (busca de personagem)**: planejada; aguarda confirmação do endpoint de personagem (C1) e do print de
-  referência da UI. Enquanto isso, a busca degrada de forma graciosa.
+- **US1 (vitais do servidor)**: ✅ implementada e testada (unit + E2E).
+- **US2 (busca de personagem)**: ✅ implementada (endpoint `/api/characters/search`); status online fica `unknown` até a fonte expor (C2).
+- ⚠️ **Dados reais em produção** dependem do allowlist do Rubinot (bloqueio Cloudflare). Até lá, o site degrada graciosamente. Ver `docs/ci-cd.md` e `docs/data-sources.md`.
 
 ## Documentação para contribuir
 
