@@ -20,12 +20,12 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 ## Phase 1: Setup (compartilhado da Evolução 1)
 
-- [ ] T001 Definir `DataOrigin` (`'oficial'|'derivado'|'exemplo'`) e estender o envelope em `src/domain/shared/data-origin.ts`
-- [ ] T002 [P] Seletor de modo de fonte (mock vs real) por env em `src/infrastructure/config/data-source-mode.ts` (default: mock)
-- [ ] T003 [P] Gerador determinístico de dados de exemplo (nomes/mundos/valores fixos, sem aleatoriedade) em `src/infrastructure/mock/demo-data.ts`
-- [ ] T004 [P] Componente `DemoBadge` (selo "dados de exemplo") em `src/app/components/demo-badge.tsx`
-- [ ] T005 [P] Componentes de gráfico SVG próprios (`Sparkline`, `MiniBars`) em `src/app/components/charts/` (contraste/dark, sem lib)
-- [ ] T006 Navegação: adicionar links (Ranking, Power Gamers, Bosses, Guilds, News, Streamers) ao header em `src/app/layout.tsx`, mantendo o MVP intacto
+- [X] T001 Definir `DataOrigin` (`'oficial'|'derivado'|'exemplo'`) e estender o envelope em `src/domain/shared/data-origin.ts`
+- [X] T002 [P] Seletor de modo de fonte (mock vs real) por env em `src/infrastructure/config/data-source-mode.ts` (default: mock)
+- [X] T003 [P] Gerador determinístico de dados de exemplo (nomes/mundos/valores fixos, sem aleatoriedade) em `src/infrastructure/mock/demo-data.ts`
+- [X] T004 [P] Componente `DemoBadge` (selo "dados de exemplo") em `src/app/components/demo-badge.tsx`
+- [X] T005 [P] Componentes de gráfico SVG próprios (`Sparkline`, `MiniBars`) em `src/app/components/charts/` (contraste/dark, sem lib)
+- [X] T006 Navegação: adicionar links (Ranking, Power Gamers, Bosses, Guilds, News, Streamers) ao header em `src/app/layout.tsx`, mantendo o MVP intacto
 
 **Checkpoint**: base de demo pronta (origem, seletor, selo, gráficos, navegação).
 
@@ -39,19 +39,19 @@ description: "Task list — Evolução 1 (Onda 1: modo demonstração)"
 
 ### Tests (US1)
 
-- [ ] T007 [P] [US1] Teste unitário `sortRanking` (RG-E1: exp desc, empate por nome) em `tests/unit/domain/sort-ranking.test.ts`
-- [ ] T008 [P] [US1] Teste unitário do gerador de ranking de exemplo (determinístico, 100 entradas, origin='exemplo') em `tests/unit/mock/ranking-mock.test.ts`
-- [ ] T009 [P] [US1] E2E `/ranking` (rede interceptada): lista populada + filtro por mundo + selo "exemplo" em `tests/e2e/ranking.spec.ts`
+- [X] T007 [P] [US1] Teste unitário `sortRanking` (RG-E1: exp desc, empate por nome) em `tests/unit/domain/sort-ranking.test.ts`
+- [X] T008 [P] [US1] Teste unitário do gerador de ranking de exemplo (determinístico, 100 entradas, origin='exemplo') em `tests/unit/mock/ranking-mock.test.ts`
+- [X] T009 [P] [US1] E2E `/ranking` (rede interceptada): lista populada + filtro por mundo + selo "exemplo" em `tests/e2e/ranking.spec.ts`
 
 ### Implementation (US1)
 
-- [ ] T010 [P] [US1] Entidade `RankingEntry` em `src/domain/entities/ranking-entry.ts`
-- [ ] T011 [P] [US1] Port `RankingRepository` em `src/domain/ports/ranking-repository.ts`
-- [ ] T012 [US1] Serviço `sortRanking` (RG-E1) em `src/domain/services/sort-ranking.ts`
-- [ ] T013 [US1] `MockRankingRepository` (origin='exemplo') em `src/infrastructure/mock/mock-ranking-repository.ts`
-- [ ] T014 [US1] Caso de uso `GetTopExperience` em `src/application/use-cases/get-top-experience.ts`
-- [ ] T015 [US1] Route Handler `GET /api/ranking?world=` em `src/app/api/ranking/route.ts` (DTO com origin+fetchedAt)
-- [ ] T016 [US1] Página `/ranking` em `src/app/ranking/page.tsx` + componentes `RankingTable`/filtro de mundo + `DemoBadge`
+- [X] T010 [P] [US1] Entidade `RankingEntry` em `src/domain/entities/ranking-entry.ts`
+- [X] T011 [P] [US1] Port `RankingRepository` em `src/domain/ports/ranking-repository.ts`
+- [X] T012 [US1] Serviço `sortRanking` (RG-E1) em `src/domain/services/sort-ranking.ts`
+- [X] T013 [US1] `MockRankingRepository` (origin='exemplo') em `src/infrastructure/mock/mock-ranking-repository.ts`
+- [X] T014 [US1] Caso de uso `GetTopExperience` em `src/application/use-cases/get-top-experience.ts`
+- [X] T015 [US1] Route Handler `GET /api/ranking?world=` em `src/app/api/ranking/route.ts` (DTO com origin+fetchedAt)
+- [X] T016 [US1] Página `/ranking` em `src/app/ranking/page.tsx` + componentes `RankingTable`/filtro de mundo + `DemoBadge`
 
 **Checkpoint**: US1 navegável em modo demo.
 
