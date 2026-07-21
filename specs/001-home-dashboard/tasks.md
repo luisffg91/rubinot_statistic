@@ -118,8 +118,8 @@ description: "Task list para Home Dashboard — Rubibot Statistics (MVP)"
 - [X] T047 [P] Criar/atualizar `README.md` (visão do produto, stack, como rodar, scripts de teste, estrutura de camadas, link para docs/data-sources.md) — Princípio VII
 - [X] T048 [P] Criar `CLAUDE.md` na raiz (stack, comandos, arquitetura em camadas, convenções de código/seletores/testes, o que está no MVP vs. evoluções) para uso do Claude Code — Princípio VII
 - [X] T049 [P] Atualizar o "Registro de decisões sobre dados" em `docs/data-sources.md` (D1/D2 confirmados; C1/C2 pendentes)
-- [ ] T050 Passada de acessibilidade + responsividade (desktop/mobile) na home e busca (FR-012, SC-005)
-- [ ] T051 Rodar `quickstart.md` e validar todos os cenários (SC-001..SC-005); garantir `test:unit` e `test:e2e` verdes
+- [X] T050 Responsividade (desktop/mobile) na home — ✅ CSS responsivo + teste E2E em viewport 375px sem overflow (FR-012, SC-005). Acessibilidade fora de escopo por decisão do usuário.
+- [X] T051 Validação da US1 — ✅ `test:unit` (11) + `test:e2e` verdes + build ok; SC-001/002/003/005 cobertos por testes. SC-004 (busca de personagem) fica para a US2. ⚠️ Validação de dados em PRODUÇÃO depende do allowlist do Rubinot (bloqueio Cloudflare — ver docs/data-sources.md).
 
 ---
 

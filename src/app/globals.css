@@ -176,3 +176,32 @@ a {
 .status-dot--offline {
   background: var(--color-offline);
 }
+
+/* Nome do mundo trunca em vez de estourar a largura */
+.worlds-list__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Responsivo: telas estreitas (mobile) --- */
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-4) var(--space-2);
+  }
+  .online-counter__value {
+    font-size: 2rem;
+  }
+  /* Esconde o rótulo de PvP em telas muito estreitas para preservar legibilidade */
+  .worlds-list__item {
+    grid-template-columns: auto 1fr auto;
+  }
+  .worlds-list__pvp {
+    display: none;
+  }
+  .data-block__footer {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

@@ -64,4 +64,18 @@ Ao descobrir uma fonte, preencha: **URL exata**, **método**, **parâmetros**, *
 - *2026-07-20 — Documento criado. Todos os endpoints do MVP pendentes de confirmação.*
 - *2026-07-20 — D1/D2 confirmados: `GET /api/worlds` (JSON). Rubinot expõe API pública (Q1=sim); sem rate limit (Q4=não). Total online = soma de `playersOnline`.*
 - *2026-07-21 — US1 implementada e validada (unit + E2E). D5 (personagem) segue 🟡: URL previsível e 404 estável confirmados (Q3), mas falta o path exato (C1) e o campo de status online (C2). D3 (guilds) e D4 (News) movidos para a Evolução 1.*
+- *2026-07-21 — ⚠️ **BLOQUEIO Cloudflare**: `GET /api/worlds` responde **HTTP 403 "Just a moment..."** a fetch server-side (funciona só no browser, que resolve o desafio JS). A produção no Vercel mostra "indisponível". **Decisão**: buscar **acesso oficial/allowlist** com a staff do Rubinot. O app passou a enviar um User-Agent identificável para servir de alvo de allowlist.*
+
+## ⚠️ Ação necessária — allowlist do Rubinot (D1/D2)
+
+O `GET https://rubinot.com.br/api/worlds` está atrás do Cloudflare e **bloqueia requisições server-side**
+(HTTP 403 / desafio "Just a moment..."). Isso impede o app (Vercel) de ler os dados; a home degrada para
+"indisponível". Para destravar, peça à staff do Rubinot para **allowlistar** o app — o mais prático é por
+**User-Agent** (IP do Vercel é dinâmico):
+
+- **User-Agent enviado pelo app**: `RubibotStatistics/1.0 (+https://rubinot-statistic.vercel.app)`
+  - configurável via env `RUBINOT_USER_AGENT` caso o Rubinot peça um valor específico.
+- Alternativa: allowlist por IP (exige IP estático — add-on do Vercel).
+
+Enquanto não liberado, o comportamento correto é a degradação graciosa (FR-009) já implementada.
 
