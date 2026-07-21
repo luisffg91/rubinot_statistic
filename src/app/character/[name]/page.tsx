@@ -9,15 +9,10 @@ export default async function CharacterPage({ params }: { params: Promise<{ name
   const decoded = decodeURIComponent(name);
   return (
     <main className="container">
-      <header className="hero">
-        <p>
-          <Link href="/">← voltar</Link>
-        </p>
-        <h1>{decoded}</h1>
-      </header>
-      <section className="data-block">
-        <CharacterView name={decoded} />
-      </section>
+      <p className="breadcrumb">
+        <Link href="/">← voltar</Link>
+      </p>
+      <CharacterView name={decoded} />
     </main>
   );
 }

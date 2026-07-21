@@ -22,7 +22,7 @@ export class RubinotCharacterClient implements CharacterRepository {
         headers: { 'User-Agent': RUBINOT_USER_AGENT, Accept: 'application/json' },
       });
       const character = mapCharacter(payload);
-      return character ? ok(character) : notFound();
+      return character ? ok({ ...character, origin: 'oficial' as const }) : notFound();
     } catch (e) {
       // 404 = personagem inexistente (RG-5); demais falhas = indisponível (FR-009).
       if (e instanceof HttpError && e.status === 404) return notFound();

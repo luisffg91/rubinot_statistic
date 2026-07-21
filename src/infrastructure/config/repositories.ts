@@ -5,7 +5,10 @@ import type { BossRepository } from '@/domain/ports/boss-repository';
 import type { GuildsRepository } from '@/domain/ports/guilds-repository';
 import type { NewsRepository } from '@/domain/ports/news-repository';
 import type { SponsoredStreamersRepository } from '@/domain/ports/sponsored-streamers-repository';
+import type { CharacterRepository } from '@/domain/ports/character-repository';
 import { RubinotWorldsClient } from '@/infrastructure/rubinot/rubinot-worlds-client';
+import { RubinotCharacterClient } from '@/infrastructure/rubinot/rubinot-character-client';
+import { MockCharacterRepository } from '@/infrastructure/mock/mock-character-repository';
 import { MockWorldsRepository } from '@/infrastructure/mock/mock-worlds-repository';
 import { MockRankingRepository } from '@/infrastructure/mock/mock-ranking-repository';
 import { MockPowerGamersRepository } from '@/infrastructure/mock/mock-power-gamers-repository';
@@ -25,6 +28,13 @@ export function getWorldsRepository(): WorldsRepository {
   // para a home ficar apresentável antes da liberação.
   if (process.env.RUBINOT_WORLDS_URL) return new RubinotWorldsClient();
   return new MockWorldsRepository();
+}
+
+export function getCharacterRepository(): CharacterRepository {
+  // Com RUBINOT_CHARACTER_URL (allowlist) → API real. Sem ela (demo) → personagem de exemplo,
+  // para a página de detalhes ficar apresentável antes da liberação.
+  if (process.env.RUBINOT_CHARACTER_URL) return new RubinotCharacterClient();
+  return new MockCharacterRepository();
 }
 
 export function getRankingRepository(): RankingRepository {
