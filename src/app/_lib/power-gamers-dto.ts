@@ -15,6 +15,7 @@ export interface PowerGamersDto {
   worlds: string[];
   world: string | null;
   period: GainPeriod;
+  day: string | null;
   origin: DataOrigin;
   fetchedAt: string;
   collecting: boolean;
@@ -32,6 +33,7 @@ export function toPowerGamersDto(pg: PowerGamers): PowerGamersDto {
     worlds: pg.worlds,
     world: pg.world,
     period: pg.period,
+    day: pg.day,
     origin: pg.origin,
     fetchedAt: pg.fetchedAt.toISOString(),
     collecting: pg.collecting,

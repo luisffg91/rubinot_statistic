@@ -13,8 +13,8 @@ export function PowerGamersTable({ entries }: { entries: PowerGamerDto[] }) {
           <th>#</th>
           <th>Personagem</th>
           <th>Mundo</th>
-          <th>XP ganho</th>
-          <th>Evolução</th>
+          <th className="num">XP ganho</th>
+          <th className="spark-col">Evolução</th>
         </tr>
       </thead>
       <tbody>
@@ -23,8 +23,8 @@ export function PowerGamersTable({ entries }: { entries: PowerGamerDto[] }) {
             <td className="ranking-table__rank">{e.rank}</td>
             <td>{e.name}</td>
             <td className="ranking-table__world">{e.world}</td>
-            <td className="ranking-table__exp">+{e.gained.toLocaleString('pt-BR')}</td>
-            <td>
+            <td className="num gain-cell">+{e.gained.toLocaleString('pt-BR')}</td>
+            <td className="spark-col">
               <Sparkline points={e.spark} />
             </td>
           </tr>

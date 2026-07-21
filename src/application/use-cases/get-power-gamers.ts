@@ -8,6 +8,7 @@ export interface PowerGamers {
   worlds: string[];
   world: string | null;
   period: GainPeriod;
+  day: string | null;
   origin: DataOrigin;
   fetchedAt: Date;
   collecting: boolean;
@@ -17,16 +18,15 @@ export interface PowerGamers {
 export class GetPowerGamers {
   constructor(private readonly repo: PowerGamersRepository) {}
 
-  async execute(period: GainPeriod, world?: string, limit = 100): Promise<PowerGamers> {
-    const { entries, worlds, origin, fetchedAt, collecting } = await this.repo.fetchGains(
-      period,
-      world,
-    );
+  async execute(period: GainPeriod, world?: string, day?: string, limit = 100): Promise<PowerGamers> {
+    const { entries, worlds, origin, fetchedAt, day: resolvedDay, collecting } =
+      await this.repo.fetchGains(period, world, day);
     return {
       entries: sortPowerGamers(entries).slice(0, limit),
       worlds,
       world: world ?? null,
       period,
+      day: resolvedDay,
       origin,
       fetchedAt,
       collecting,

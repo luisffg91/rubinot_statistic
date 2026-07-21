@@ -23,4 +23,13 @@ describe('MockPowerGamersRepository (demo)', () => {
     const auroria = await new MockPowerGamersRepository().fetchGains('week', 'Auroria');
     expect(auroria.entries.every((e) => e.world === 'Auroria')).toBe(true);
   });
+
+  it('dia específico: mesmo dia é estável e dias diferentes variam', async () => {
+    const d1a = await new MockPowerGamersRepository().fetchGains('day', undefined, '2026-01-01');
+    const d1b = await new MockPowerGamersRepository().fetchGains('day', undefined, '2026-01-01');
+    const d2 = await new MockPowerGamersRepository().fetchGains('day', undefined, '2026-02-15');
+    expect(d1a.day).toBe('2026-01-01');
+    expect(d1a.entries).toEqual(d1b.entries);
+    expect(d1a.entries[0].gained).not.toBe(d2.entries[0].gained);
+  });
 });
