@@ -73,8 +73,7 @@ src/
 
 ## Escopo por fase
 
-- **MVP (`specs/001-home-dashboard`)**: US1 (online + mundos) ✅ implementada; US2 (busca de personagem)
-  planejada.
+- **MVP (`specs/001-home-dashboard`)**: US1 (online + mundos) ✅ e US2 (busca de personagem) ✅ implementadas.
 - **Evolução 1**: guilds, News (fonte oficial), ranking/top exp, bosses boostados.
 - **Evolução 2**: hunt finder.
 - Cada evolução é **especificada antes** de planejada/implementada (Princípio V). Não adicionar itens fora
@@ -82,10 +81,9 @@ src/
 
 ## Pendências rastreadas (ver `docs/data-sources.md`)
 
-- **C1**: path/método exatos do endpoint de personagem → bloqueia `RubinotCharacterClient` (US2).
-- **C2**: campo de status online/offline do personagem (ausente no exemplo) → `Character.status` fica opcional.
-- **Print**: `docs/references/character-details.png` está incorreto (duplicata do GuildStats) → bloqueia a estilização fina
-  da visão de personagem.
+- ⚠️ **Allowlist do Rubinot**: a API está atrás do Cloudflare e bloqueia fetch server-side (403). Os dados
+  reais em produção dependem do Rubinot allowlistar o app (User-Agent `RubibotStatistics/1.0`). Cobre US1 e US2.
+- **C2**: a fonte não expõe status online/offline do personagem → `Character.status = 'unknown'`.
 
 ## CI/CD e fluxo de branches
 
