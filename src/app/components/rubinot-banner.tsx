@@ -10,8 +10,10 @@ export function RubinotBanner() {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <span className="rubinot-banner__mark" aria-hidden="true">
-        R
+      <span className="rubinot-banner__logo">
+        {/* Logo oficial do Rubinot num chip claro (link promocional ao site oficial). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/rubinot-logo.png" alt="Rubinot" />
       </span>
       <span className="rubinot-banner__text">
         <strong>Jogue no Rubinot</strong>
