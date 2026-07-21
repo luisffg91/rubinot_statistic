@@ -83,15 +83,16 @@ Todas as fontes externas são rastreadas em [`docs/data-sources.md`](docs/data-s
 
 ## Evolução 1 (modo demonstração)
 
-Novas páginas, hoje populadas com **dados de exemplo** (rotulados como "dados de exemplo") para demonstrar a
-experiência completa antes da liberação das APIs do Rubinot:
+Novas capacidades, hoje populadas com **dados de exemplo** (rotulados como "dados de exemplo") para demonstrar
+a experiência completa antes da liberação das APIs do Rubinot:
 
+- **Home** — total de jogadores online + mundos (card único de status), **News**, **boosted do dia**
+  (boss + criatura) e **streamers ao vivo**, além da busca de personagem.
 - `/ranking` — Top Experiência (filtro por mundo).
-- `/power-gamers` — quem mais ganhou XP por dia/semana/mês (com sparkline).
-- `/bosses` — boss e criatura boostados do dia.
+- `/power-gamers` — quem mais ganhou XP por **dia** ou **período** (com sparkline).
 - `/guilds` — lista e detalhe de guilds.
-- `/news` — novidades do servidor.
 - `/streamers` — streamers patrocinados ao vivo (Twitch) + canais de YouTube.
+- `/character/<nome>` — detalhes do personagem com aba **Experiência** (histórico de XP).
 
 Cada capacidade fica atrás de um *port*; hoje um adapter **mock** (`src/infrastructure/mock/`) fornece os
 dados de exemplo. Quando os endpoints reais forem liberados, troca-se o adapter (via `infrastructure/config`)
