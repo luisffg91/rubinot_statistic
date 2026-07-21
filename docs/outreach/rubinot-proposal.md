@@ -9,38 +9,33 @@ liberação (allowlist) das APIs e propor uma parceria de divulgação. Enviar *
 
 ---
 
-## E-mail (pronto para envio)
+## E-mail (curto e objetivo — detalhe vai no deck em anexo)
 
-**Assunto:** Parceria — Rubinot Statistics, um fansite de estatísticas para o servidor
+**Assunto:** Rubinot Statistics — fansite de estatísticas (parceria + allowlist de API)
 
 Olá, equipe do Rubinot!
 
-Sou fã do servidor e desenvolvi o **Rubinot Statistics**, um fansite dedicado a reunir e apresentar, de
-forma clara, as estatísticas do Rubinot — inspirado em sites como o GuildStats (referência no Tibia global).
-Seria, até onde sei, **o primeiro fansite de estatísticas dedicado ao Rubinot**.
+Sou fã do servidor e criei o **Rubinot Statistics**, o primeiro fansite de estatísticas dedicado ao Rubinot
+(inspirado no GuildStats). Já está no ar: **https://rubinot-statistic.vercel.app/** — e deixa explícito que é
+um fansite **não-oficial**, respeitando a identidade visual de vocês.
 
-Já há um MVP funcional no ar: **https://rubinot-statistic.vercel.app/**. Ele mostra o total de jogadores
-online (com atualização automática), os mundos e uma busca de personagem. Toda a experiência foi construída
-com cuidado, respeitando a identidade visual de vocês e deixando explícito que é um **fansite não-oficial**.
+Para os dados aparecerem em produção, preciso de uma ajuda pequena: **liberar (allowlist) o acesso do meu
+servidor** às rotas `GET /api/worlds` e `GET /api/characters/search`, hoje bloqueadas pelo Cloudflare
+(funcionam no navegador, mas não no acesso server-side). Basta liberar o User-Agent `RubibotStatistics/1.0`
+— ou me orientar sobre uma API oficial para fansites.
 
-Para os dados aparecerem em produção, preciso de uma pequena ajuda de vocês: o acesso às rotas
-`/api/worlds` e `/api/characters/search` funciona no navegador, mas é bloqueado pelo Cloudflare quando o
-nosso servidor tenta consultá-las. **Seria possível liberar (allowlist) as requisições identificadas pelo
-User-Agent `RubibotStatistics/1.0`?** (Alternativamente, um endpoint/token oficial para fansites também
-funcionaria — o que for mais confortável para vocês.)
+Em troca, o projeto trabalha a favor do servidor (banner para o site oficial + divulgação com
+streamers/criadores). **Anexei um material de apresentação** com a visão completa, o roadmap e o plano de
+parceria.
 
-Em troca, o projeto trabalha **a favor do servidor**: já há um banner que leva ao site oficial, e tenho um
-plano de divulgação com streamers e criadores de conteúdo para atrair e reter jogadores (detalhes abaixo).
-
-Fico à disposição para conversar, ajustar o que for necessário e alinhar expectativas. Obrigado pela
-atenção e pelo trabalho de vocês no servidor!
+Fico à disposição para alinhar o que for necessário. Obrigado pelo trabalho de vocês no servidor!
 
 Abraço,
 [Seu nome] — Rubinot Statistics
-rubinotstatistics@gmail.com · (seu telefone) · https://rubinot-statistic.vercel.app/
+rubinotstatistics@gmail.com · https://rubinot-statistic.vercel.app/
 
 <!-- Versão pronta para envio, com nome e telefone reais, em docs/outreach/rubinot-proposal.local.md
-     (arquivo NÃO versionado — o repositório é público). -->
+     (arquivo NÃO versionado — o repositório é público). O detalhamento abaixo alimenta o deck em anexo. -->
 
 
 ---
@@ -64,21 +59,17 @@ Tudo de forma didática e acessível.
 
 1. **Evolução 1:** guilds, News (da fonte oficial), ranking/top de experiência, bosses boostados do dia,
    ranking de power gamers (quem mais ganha XP por período) e vitrine de streamers/criadores parceiros.
-2. **Evolução 2 — Ferramentas para o jogador (`/ferramentas`):** uma central de calculadoras úteis,
-   calculadas no próprio navegador (não dependem das suas APIs):
-   - **Treino de skill com varinha/exercise** — quanto tempo e quantos itens para subir magic level/skill,
-     com custo estimado.
-   - **Simulador de roda de habilidade** (Wheel of Destiny) — montar e comparar builds por vocação.
-   - **Divisão de loot** de hunt em grupo, **stamina**, **imbuements**, **blessings** e previsão de nível.
-   - **Hunt finder** — sugestão de spots por nível/vocação/lucro.
+2. **Evolução 2 — Ferramentas para o jogador (`/ferramentas`):** central de calculadoras calculadas no
+   próprio navegador (não dependem das suas APIs): **velocidade**, **level** (XP), **treino** (skill/magic
+   level), **stamina** e **simulador de roda de habilidade** (Wheel of Destiny). Hunt finder em fase posterior.
 - Cada evolução é especificada e testada antes de ir ao ar (qualidade como prioridade).
 
 ### O que o Rubinot ganha
 
 - **Vitrine e retenção:** um fansite ativo mantém a comunidade engajada e dá mais motivos para jogar.
 - **Tráfego direcionado:** banner e CTAs levando ao site oficial e ao download.
-- **Ferramentas que fixam o jogador:** calculadoras (treino de skill, roda de habilidade, divisão de loot)
-  transformam o fansite em rotina diária — mais tempo na comunidade do Rubinot.
+- **Ferramentas que fixam o jogador:** calculadoras (velocidade, level, treino, stamina e roda de
+  habilidade) transformam o fansite em rotina diária — mais tempo na comunidade do Rubinot.
 - **Pioneirismo:** ser o primeiro servidor alternativo com um fansite de estatísticas dedicado.
 - **Zero custo/risco:** hospedagem e manutenção por nossa conta; consumo de dados responsável (sem abuso,
   respeitando eventuais limites que vocês definirem).
