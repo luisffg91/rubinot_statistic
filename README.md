@@ -100,19 +100,19 @@ sem reescrever a UI. Detalhes em `specs/003-evolution-1/`.
 
 ## Próximos passos (Evolução 2)
 
-Ainda não iniciada — cada item será especificado antes de implementado (Spec Kit). Ideias mapeadas:
+Ainda não iniciada — cada item será especificado antes de implementado (Spec Kit).
 
-- **Página de ferramentas** (`/ferramentas`) — calculadoras úteis ao jogador, calculadas no cliente
-  (sem depender das APIs do Rubinot):
-  - **Treino de skill com varinha/rune** — quantas horas/exercise weapons (varinhas) para subir magic
-    level ou skill, com custo estimado.
-  - **Simulador de roda de habilidade** (Wheel of Destiny) — montar e comparar builds de pontos por vocação.
-  - Outras calculadoras candidatas: **divisão de loot** de hunt em grupo, **stamina**, **imbuements**
-    (materiais/custo), **blessings** e previsão de nível por XP/hora.
-- **Hunt finder** — sugerir spots de caça por nível/vocação/lucro.
+**Página de ferramentas** (`/ferramentas`) — central de calculadoras calculadas no próprio navegador
+(fórmulas do jogo; **não dependem das APIs do Rubinot**):
 
-> As ferramentas são majoritariamente **offline/client-side** (fórmulas do jogo), então entregam valor
-> mesmo antes da liberação das APIs — bom candidato para as próximas entregas do modo demonstração.
+- **Velocidade** — velocidade do personagem por nível e com haste/itens.
+- **Level** — XP entre níveis e para o próximo nível.
+- **Treino** — treino de skill e magic level (exercise/dummies): tempo e custo estimado.
+- **Stamina** — tempo para regenerar a stamina.
+- **Simulador de roda de habilidade** (Wheel of Destiny) — montar e comparar builds de pontos por vocação.
+
+> Por serem **client-side**, as ferramentas entregam valor mesmo antes da liberação das APIs — bom
+> candidato para as próximas entregas. (Hunt finder fica para uma fase posterior.)
 
 ## Estado atual
 

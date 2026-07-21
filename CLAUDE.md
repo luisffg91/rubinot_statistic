@@ -79,9 +79,9 @@ src/
   capacidade tem um *port* + adapter `MockXRepository` em `src/infrastructure/mock/`; o seletor em
   `src/infrastructure/config/repositories.ts` troca para o client real (Onda 2) sem tocar na UI.
   Onda 2 (pós-allowlist): clients reais, persistência (Postgres) + Vercel Cron para Power Gamers, Twitch/YouTube.
-- **Evolução 2**: hunt finder + **página de ferramentas** (`/ferramentas`): calculadoras client-side —
-  treino de skill com varinha/exercise, simulador de roda de habilidade (Wheel of Destiny), divisão de loot,
-  stamina, imbuements, blessings. Majoritariamente offline (fórmulas do jogo), independem do allowlist.
+- **Evolução 2 — página de ferramentas** (`/ferramentas`): 5 calculadoras client-side (fórmulas do jogo,
+  independem do allowlist) — **velocidade**, **level** (XP), **treino** (skill/magic level), **stamina** e
+  **simulador de roda de habilidade** (Wheel of Destiny). Hunt finder fica para fase posterior.
 - Cada evolução é **especificada antes** de planejada/implementada (Princípio V). Não adicionar itens fora
   do escopo da fase atual.
 
