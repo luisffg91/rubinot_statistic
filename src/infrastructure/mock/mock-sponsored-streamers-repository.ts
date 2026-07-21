@@ -9,7 +9,7 @@ const STREAMERS: Omit<SponsoredStreamer, 'platform' | 'url'>[] = [
   { channel: 'dragaolive', displayName: 'Dragão Live', isLive: true, liveTitle: 'Hunt em Auroria — bora!', viewers: 842 },
   { channel: 'retropvpbr', displayName: 'Retro PvP BR', isLive: true, liveTitle: 'War no mundo Bellum', viewers: 531 },
   { channel: 'questmaster', displayName: 'Quest Master', isLive: true, liveTitle: 'Fechando a Sweet Dreams', viewers: 217 },
-  { channel: 'lootecacada', displayName: 'Loot & Caçada', isLive: false, liveTitle: null, viewers: null },
+  { channel: 'lootecacada', displayName: 'Loot & Caçada', isLive: true, liveTitle: 'Rota de loot em Elysian', viewers: 389 },
   { channel: 'mestredastasks', displayName: 'Mestre das Tasks', isLive: false, liveTitle: null, viewers: null },
 ];
 

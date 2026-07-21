@@ -82,7 +82,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
             <div className="site-footer__bar">
               <span>© {new Date().getFullYear()} Rubinot Statistics</span>
-              <span>Feito com Next.js · dados via API do Rubinot</span>
             </div>
           </div>
         </footer>
