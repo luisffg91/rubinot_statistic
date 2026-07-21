@@ -1,9 +1,14 @@
 import type { BoostedResult } from '@/domain/ports/boss-repository';
 import type { DataOrigin } from '@/domain/shared/data-origin';
 
+export interface BoostedEntryDto {
+  name: string;
+  imageUrl: string | null;
+}
+
 export interface BoostedDto {
-  boss: string;
-  creature: string;
+  boss: BoostedEntryDto;
+  creature: BoostedEntryDto;
   date: string;
   origin: DataOrigin;
   fetchedAt: string;

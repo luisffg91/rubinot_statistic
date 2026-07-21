@@ -10,6 +10,7 @@ import { MockBossRepository } from '@/infrastructure/mock/mock-boss-repository';
 import { MockGuildsRepository } from '@/infrastructure/mock/mock-guilds-repository';
 import { MockNewsRepository } from '@/infrastructure/mock/mock-news-repository';
 import { MockSponsoredStreamersRepository } from '@/infrastructure/mock/mock-sponsored-streamers-repository';
+import { TibiaBossRepository } from '@/infrastructure/tibiadata/tibia-boss-repository';
 
 /**
  * Fábricas de repositórios por capacidade. Onda 1: sempre o adapter MOCK (demo).
@@ -27,7 +28,8 @@ export function getPowerGamersRepository(): PowerGamersRepository {
 }
 
 export function getBossRepository(): BossRepository {
-  return new MockBossRepository();
+  // Imagens de exemplo via TibiaData; em falha, cai no mock (sempre há conteúdo no demo).
+  return new TibiaBossRepository(new MockBossRepository());
 }
 
 export function getGuildsRepository(): GuildsRepository {
