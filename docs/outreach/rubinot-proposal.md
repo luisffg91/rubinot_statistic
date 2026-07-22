@@ -6,7 +6,7 @@ liberação (allowlist) das APIs e propor uma parceria de divulgação. Enviar *
 
 - **MVP no ar:** https://rubinot-statistic.vercel.app/
 - **Pedido técnico principal:** allowlist do User-Agent `RubibotStatistics/1.0 (+https://rubinot-statistic.vercel.app)` nas rotas `GET /api/worlds` e `GET /api/characters/search` (hoje bloqueadas pelo Cloudflare no acesso server-side).
-- **Deck para anexar:** [`rubinot-statistics-proposta.pdf`](rubinot-statistics-proposta.pdf) (fonte e como regenerar em [`deck/`](deck/)).
+- **Deck para anexar:** gere o PDF a partir de [`deck/`](deck/) (`deck.html` → PDF; ver `deck/README.md`). O PDF fica **local, fora do git**.
 
 ---
 

@@ -4,8 +4,11 @@ Apresentação para anexar ao e-mail da proposta ao Rubinot.
 
 - **Fonte:** [`deck.html`](deck.html) — 9 slides 16:9, com a identidade visual do site (paleta, fontes
   Cinzel/Inter e o logo). É o "código" do deck; edite aqui.
-- **Entregável:** [`../rubinot-statistics-proposta.pdf`](../rubinot-statistics-proposta.pdf) — PDF pronto
-  para anexar.
+- **Entregável:** `../rubinot-statistics-proposta.pdf` — gerado **localmente** a partir do `deck.html`
+  (não versionado; está no `.gitignore`). Regenere quando editar o deck (ver abaixo).
+- **Assets:** `assets/` — screenshots reais do site (capturados da versão em produção) e o QR code
+  (`qr.svg`, gerado com `npx qrcode -t svg -o assets/qr.svg "https://rubinot-statistic.vercel.app/"`).
+  Para atualizar as telas, recapture com o site rodando (`next start`).
 
 ## Como regenerar o PDF após editar o `deck.html`
 
