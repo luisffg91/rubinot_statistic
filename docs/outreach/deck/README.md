@@ -10,6 +10,11 @@ Apresentação para anexar ao e-mail da proposta ao Rubinot.
   (`qr.svg`, gerado com `npx qrcode -t svg -o assets/qr.svg "https://rubinot-statistic.vercel.app/"`).
   Para atualizar as telas, recapture com o site rodando (`next start`).
 
+> **WhatsApp (privacidade):** o `deck.html` **público** mostra `WhatsApp: sob consulta`. O número real fica
+> em `.env.local` (`WHATSAPP=...`, gitignored) e é injetado **apenas no PDF local** durante o render (substitui
+> `sob consulta`). Assim o telefone não vai para o repositório público. No fluxo do navegador (Opção A), edite
+> o número localmente antes de imprimir, se quiser exibi-lo.
+
 ## Como regenerar o PDF após editar o `deck.html`
 
 **Opção A — navegador (sem ferramentas):**
@@ -22,16 +27,24 @@ Apresentação para anexar ao e-mail da proposta ao Rubinot.
 **Opção B — Playwright (reproduz o export automático):**
 
 ```js
-// node deck-build.mjs  (Playwright já é devDependency do projeto)
+// node deck-build.mjs  (rode da raiz do projeto; Playwright já é devDependency)
 import { chromium } from '@playwright/test';
 import { pathToFileURL } from 'url';
+import { readFileSync, writeFileSync, rmSync } from 'fs';
+
+// injeta o WhatsApp real (do .env.local) só no PDF local
+const wa = (readFileSync('.env.local', 'utf8').match(/^WHATSAPP=(.+)$/m) || [])[1]?.trim();
+const dir = process.cwd() + '/docs/outreach/deck';
+let html = readFileSync(dir + '/deck.html', 'utf8');
+if (wa) html = html.replace('<span class="wa">sob consulta</span>', `<span class="wa">${wa}</span>`);
+const tmp = dir + '/.render.tmp.html';
+writeFileSync(tmp, html);
+
 const browser = await chromium.launch();
 const page = await browser.newPage();
-await page.goto(pathToFileURL(process.cwd() + '/docs/outreach/deck/deck.html').href, {
-  waitUntil: 'networkidle',
-});
+await page.goto(pathToFileURL(tmp).href, { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
-await page.waitForTimeout(1200);
+await page.waitForTimeout(1300);
 await page.emulateMedia({ media: 'screen' });
 await page.pdf({
   path: 'docs/outreach/rubinot-statistics-proposta.pdf',
@@ -40,6 +53,7 @@ await page.pdf({
   printBackground: true,
 });
 await browser.close();
+rmSync(tmp);
 ```
 
 > As fontes (Cinzel/Inter) são carregadas do Google Fonts no momento do render — precisa de internet.
